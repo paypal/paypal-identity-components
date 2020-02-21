@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://localhost.paypal.com:9000/sdk.js?client-id=alc_client1"></script>
+</head>
+
+<body>
+    <button id="paypal-auth">Connect</button><br />
+    <button id="paypal-cancel">Cancel</button><br />
+
+    <script>
+        document.querySelector('#paypal-auth').addEventListener('click', function() {
+            window.xprops.onApprove({
+
+            });
+        });
+
+        document.querySelector('#paypal-cancel').addEventListener('click', function() {
+            window.xprops.onCancel({
+
+            });
+        });
+    </script>
+
+</body>

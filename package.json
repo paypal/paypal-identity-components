@@ -1,0 +1,88 @@
+{
+  "name": "@paypal/identity-components",
+  "version": "5.0.0",
+  "description": "PayPal Identity components, for integrating auth products.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "babel-node $(npm bin)/webpack-dev-server --config webpack.config.dev.js --port 9000 --host localhost.paypal.com --open-page demo/dev/index.htm --https --hot=false --inline=false",
+    "lint": "eslint --ext .js --ext .jsx src/ test/ *.js",
+    "flow-typed": "rm -rf flow-typed && flow-typed install",
+    "flow": "flow",
+    "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
+    "test": "if [ ! $SKIP_TEST ]; then npm run lint && npm run flow-typed && npm run flow && npm run jest-ssr && npm run karma && npm run jest-screenshot; fi;",
+    "webpack": "babel-node $(npm bin)/webpack --progress",
+    "build": "npm run test && npm run webpack",
+    "release": "./scripts/publish.sh",
+    "release:patch": "./scripts/publish.sh patch",
+    "release:minor": "./scripts/publish.sh minor",
+    "release:major": "./scripts/publish.sh major",
+    "preversion": "./scripts/preversion.sh",
+    "version": "./scripts/version.sh",
+    "postversion": "./scripts/postversion.sh",
+    "clean": "rimraf dist coverage",
+    "reinstall": "rimraf flow-typed && rimraf node_modules && npm install && flow-typed install",
+    "debug": "cross-env NODE_ENV=debug",
+    "demo": "serve ./demo -l 1337",
+    "eslint-find-rules": "eslint-find-rules --current .eslintrc.js --unused --plugin",
+    "jest-screenshot": "jest test/screenshot --env=node --no-cache",
+    "jest-ssr": "jest test/ssr --env=node --no-cache"
+  },
+  "files": [
+    "src/",
+    "dist/",
+    "__sdk__.js",
+    "globals.js"
+  ],
+  "browserslist": [
+    "IE >= 11",
+    "chrome >= 27",
+    "firefox >= 30",
+    "safari >= 5",
+    "opera >= 23"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.paypal.com/paypal/paypal-auth.git"
+  },
+  "homepage": "https://developer.paypal.com/",
+  "keywords": [
+    "cross-domain",
+    "cross domain",
+    "components",
+    "component",
+    "krakenjs",
+    "kraken"
+  ],
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "conventional-changelog-cli": "^2.0.11",
+    "flow-bin": "^0.100.0",
+    "fs-extra": "^4.0.2",
+    "grumbler-scripts": "^3",
+    "imagemagick": "^0.1.3",
+    "imgur": "^0.2.1",
+    "memory-fs": "^0.4.1",
+    "mocha": "^4",
+    "mocketeer": "^0.3.0",
+    "pixelmatch": "^4.0.2",
+    "pngjs": "^3.3.0",
+    "puppeteer": "^1.14.0",
+    "serve": "^10.1.2",
+    "sync-browser-mocks": "^2.0.0"
+  },
+  "dependencies": {
+    "@paypal/common-components": "^1.0.3",
+    "@paypal/funding-components": "^1.0.15",
+    "@paypal/sdk-client": "^4.0.0",
+    "@paypal/sdk-constants": "^1.0.1",
+    "@paypal/sdk-logos": "^1.0.17",
+    "belter": "^1.0.2",
+    "cross-domain-utils": "^2.0.1",
+    "jsx-pragmatic": "^2",
+    "post-robot": "^10.0.0",
+    "zalgo-promise": "^1.0.10",
+    "zoid": "^9.0.0"
+  }
+}
