@@ -4,7 +4,7 @@
 const globals = require('./globals');
 
 module.exports = {
-    button: {
+    'auth-button': {
         entry:        './src/interface/button',
         setupHandler: 'setupButton',
         globals
