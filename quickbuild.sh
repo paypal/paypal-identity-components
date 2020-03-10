@@ -10,4 +10,4 @@ cp -r ~/nfra/zalgo-promise/src/* node_modules/zalgo-promise/src/ &&
 cp -r ~/paypal-braintree-web-client/src/* node_modules/paypal-braintree-web-client/src/ &&
 npm run webpack-base &&
 rsync -avz dist/* root@bluesuncorp.co.uk:/var/www/html/icv4/dist/ &&
-git auth dist
+git checkout dist

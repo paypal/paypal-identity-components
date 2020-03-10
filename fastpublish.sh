@@ -3,7 +3,7 @@
 set -e;
 
 rm dist/*;
-git auth dist/;
+git checkout dist/;
 
 if ! git diff-files --quiet; then
     echo "Can not publish with unstaged uncommited changes";
