@@ -13,8 +13,8 @@ module.exports = {
 
     __PAYPAL_IDENTITY__: {
         __URI__: {
-            __AUTH__:   '/identity/auth',
-            __BUTTON__: '/identity/button'
+            __AUTH__:   '/connect',
+            __BUTTON__: '/apps/connect'
         }
     }
 };

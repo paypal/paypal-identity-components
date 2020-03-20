@@ -30,14 +30,21 @@ type ButtonConfig = {|
 
 export const buttonConfigs : Array<ButtonConfig> = [];
 
-buttonConfigs.push({
-    button: {}
-});
+const DEFAULT_OAUTH_PROPS = {
+    scopes:          [ 'email' ],
+    responseType:   'code',
+    billingOptions: {
+        type:        'MERCHANT',
+        productCode:    'PRODUCT_CODE',
+        cancelUrl:   'www.paypal.com'
+    }
+};
 
 for (const fundingSource of SUPPORTED_FUNDING_SOURCES) {
     buttonConfigs.push({
         button: {
-            fundingSource
+            fundingSource,
+            ...DEFAULT_OAUTH_PROPS
         }
     });
 }
@@ -47,7 +54,8 @@ for (const label of [ BUTTON_LABEL.CONNECT ]) {
         button: {
             style: {
                 label
-            }
+            },
+            ...DEFAULT_OAUTH_PROPS
         }
     });
 }
@@ -60,7 +68,8 @@ for (const width of RESPONSIVE_WIDTHS) {
         button: {
             style: {
 
-            }
+            },
+            ...DEFAULT_OAUTH_PROPS
         }
     });
 }
@@ -70,7 +79,8 @@ for (const color of [ BUTTON_COLOR.BLUE ]) {
         button: {
             style: {
                 color
-            }
+            },
+            ...DEFAULT_OAUTH_PROPS
         }
     });
 }
@@ -80,7 +90,8 @@ for (const shape of [ BUTTON_SHAPE.RECT, BUTTON_SHAPE.PILL ]) {
         button: {
             style: {
                 shape
-            }
+            },
+            ...DEFAULT_OAUTH_PROPS
         }
     });
 }

@@ -55,21 +55,27 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
             },
         
             props: {
+
+                ctxId: {
+                    type:       'string',
+                    queryParam: true,
+                    required:   false
+                },
+
                 clientID: {
                     type:       'string',
-                    value:      () => getClientID(),
-                    queryParam: true
+                    value:      () => getClientID()
                 },
         
                 sessionID: {
                     type:       'string',
                     value:      getSessionID,
-                    queryParam: true
+                    queryParam: false
                 },
         
                 authSessionID: {
                     type:       'string',
-                    queryParam: true,
+                    queryParam: false,
                     required:   false
                 },
                 

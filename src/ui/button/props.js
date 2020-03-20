@@ -39,6 +39,13 @@ export type OnClickActions = {|
 
 export type OnClick = (OnClickData, OnClickActions) => void;
 
+export type BillingOptions = {|
+    type? : string | void,
+    productCode? : string | void,
+    cancelUrl? : string | void,
+    returnUrl? : string | void
+|};
+
 export type ButtonStyle = {|
     label : ?$Values<typeof BUTTON_LABEL>,
     color : $Values<typeof BUTTON_COLOR>,
@@ -95,7 +102,10 @@ export type ButtonProps = {|
     clientID : string,
     sessionID : string,
     authButtonSessionID : string,
-    nonce : string
+    nonce : string,
+    scopes : $ReadOnlyArray<string>,
+    responseType : string,
+    billingOptions : BillingOptions
 |};
 
 export type ButtonPropsInputs = {|
