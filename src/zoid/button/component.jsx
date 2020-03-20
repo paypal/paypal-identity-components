@@ -14,6 +14,7 @@ import { FUNDING } from '@paypal/sdk-constants/src';
 
 import { normalizeButtonStyle, type ButtonProps } from '../../ui/button/props';
 
+import { validateScopes, validateResponseType } from './util';
 import { containerTemplate } from './container';
 import { PrerenderedButton } from './prerender';
 
@@ -205,6 +206,34 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                         action: 'auth'
                     };
                 }
+            },
+
+            scopes: {
+                type:          'array',
+                required:      true,
+                queryParam:    true,
+                validate:      ({ value }) => {
+                    return validateScopes(value);
+                },
+                queryValue:    ({ value }) => {
+                    return value.join(' ');
+                }
+            },
+
+            responseType: {
+                type:       'string',
+                queryParam: true,
+                required:   true,
+                validate:   ({ value }) => {
+                    return validateResponseType(value);
+                }
+            },
+
+            billingOptions: {
+                type:          'object',
+                queryParam:    true,
+                required:      true,
+                serialization: 'base64'
             }
         }
     });

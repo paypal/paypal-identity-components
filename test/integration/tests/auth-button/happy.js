@@ -25,6 +25,13 @@ for (const flow of [ 'popup', 'iframe' ]) {
         it('should render a button into a container and click on the button, then complete the auth without createOrder', () => {
             return wrapPromise(({ expect, avoid }) => {
                 window.paypal.AuthButton({
+                    responseType:   'code',
+                    scopes:          [ 'email' ],
+                    billingOptions: {
+                        type:        'MERCHANT',
+                        productCode: 'PRODUCT_CODE',
+                        cancelUrl:   'www.paypal.com'
+                    },
                     onApprove: expect('onApprove'),
                     onCancel:  avoid('onCancel')
                 }).render('#testContainer');
