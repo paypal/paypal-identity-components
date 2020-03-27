@@ -44,7 +44,10 @@ for (const fundingSource of SUPPORTED_FUNDING_SOURCES) {
     buttonConfigs.push({
         button: {
             fundingSource,
-            ...DEFAULT_OAUTH_PROPS
+            ...DEFAULT_OAUTH_PROPS,
+            style: {
+                ...(fundingSource === FUNDING.CREDIT ? { color: BUTTON_COLOR.DARKBLUE } : {})
+            }
         }
     });
 }
@@ -53,6 +56,7 @@ for (const label of [ BUTTON_LABEL.CONNECT ]) {
     buttonConfigs.push({
         button: {
             style: {
+                // color: 'blue',
                 label
             },
             ...DEFAULT_OAUTH_PROPS
@@ -67,7 +71,7 @@ for (const width of RESPONSIVE_WIDTHS) {
         },
         button: {
             style: {
-
+               
             },
             ...DEFAULT_OAUTH_PROPS
         }

@@ -2,10 +2,11 @@
 /** @jsx node */
 
 import { node, type ElementNode, type ComponentNode } from 'jsx-pragmatic/src';
-import { PayPalLogo, LOGO_COLOR } from '@paypal/sdk-logos/src';
+import { PayPalLogo, LOGO_COLOR, PPLogo, CreditLogo } from '@paypal/sdk-logos/src';
+import { type LocaleType } from '@paypal/sdk-constants/src';
 import { noop } from 'belter/src';
 
-import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR, BUTTON_LABEL } from '../../constants';
+import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR, BUTTON_LABEL, BUTTON_FUNDING_TYPE } from '../../constants';
 import { Text } from '../text';
 
 import { normalizeButtonProps, type ButtonStyle, type ButtonContent, type ButtonPropsInputs } from './props';
@@ -23,14 +24,49 @@ type LogoProps = {|
     style : ButtonStyle
 |};
 
+type PPCreditLogoProps = {|
+    style : ButtonStyle,
+    locale : LocaleType
+|};
+
+
+function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
+    const { color = BUTTON_COLOR.BLUE } = style;
+    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE) {
+        return <PPLogo logoColor={ LOGO_COLOR.WHITE } />;
+    }
+
+    if (color === BUTTON_COLOR.GOLD) {
+        return <PPLogo logoColor={ LOGO_COLOR.BLUE } />;
+    }
+
+    throw new Error(`Unsupported button color (PP Symbol): ${ color }`);
+    
+}
+
+function PPCreditLogo({ style, locale } : PPCreditLogoProps) : ComponentNode<LogoProps> {
+    const { color } = style;
+
+    if (color === BUTTON_COLOR.DARKBLUE) {
+        return <CreditLogo logoColor={ LOGO_COLOR.WHITE } locale={ locale } />;
+    }
+
+    throw new Error(`Unsupported button color (creditLogo): ${ color }`);
+    
+}
+
 function Logo({ style } : LogoProps) : ComponentNode<LogoProps> {
     const { color } = style;
 
-    if (color === BUTTON_COLOR.BLUE) {
+    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE) {
         return <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />;
     }
 
-    throw new Error(`Unsupported button color: ${ color }`);
+    if (color === BUTTON_COLOR.GOLD) {
+        return <PayPalLogo logoColor={ LOGO_COLOR.BLUE } />;
+    }
+
+    throw new Error(`Unsupported button color (Logo): ${ color }`);
 }
 
 type LabelProps = {|
@@ -101,9 +137,20 @@ export function AuthButton(props : ButtonProps) : ElementNode {
                 onKeyPress={ keypressHandler }
                 tabindex='0'>
 
-                <div class={ CLASS.BUTTON_LABEL }>
-                    <Logo style={ style } /> <Label style={ style } content={ content } />
-                </div>
+                {
+                    fundingSource === BUTTON_FUNDING_TYPE.CREDIT ?
+                        <div class={ CLASS.BUTTON_LABEL }>
+                            <PPSymbol style={ style } />
+                            <Logo style={ style } />
+                            <PPCreditLogo style={ style } locale={ locale } />
+                        </div>
+                        :
+                        <div class={ CLASS.BUTTON_LABEL }>
+                            <PPSymbol style={ style } />
+                            <Logo style={ style } />
+                            <Label style={ style } content={ content } />
+                        </div>
+                }
             </div>
         </div>
     );

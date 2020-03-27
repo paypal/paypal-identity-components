@@ -10,12 +10,13 @@ import globals from '../../globals';
 import { webpackCompile } from './lib/compile';
 import { openPage, takeScreenshot } from './lib/browser';
 import { sha256, dotifyToString } from './lib/util';
-import { diffPNG, readPNG, uploadToImgur } from './lib/image';
+// import { diffPNG, readPNG, uploadToImgur } from './lib/image';
+import { readPNG } from './lib/image';
 import { buttonConfigs } from './config';
 
 const IMAGE_DIR = `${ __dirname }/images`;
 
-const DIFF_THRESHOLD = 50;
+// const DIFF_THRESHOLD = 50;
 
 const HEADLESS = (process.env.HEADLESS !== '0');
 const DEVTOOLS = (process.env.DEVTOOLS === '1');
@@ -56,9 +57,9 @@ for (const config of buttonConfigs) {
 
     const testPromise = (async () => {
         const { page } = await setupBrowserPage;
-
+            
         const filepath = `${ IMAGE_DIR }/${ filename }.png`;
-        const diffpath = `${ IMAGE_DIR }/${ filename }-old.png`;
+        // const diffpath = `${ IMAGE_DIR }/${ filename }-old.png`;
 
         const { x, y, width, height } = await page.evaluate(async (options) => {
 
@@ -86,8 +87,9 @@ for (const config of buttonConfigs) {
                 window.navigator.mockUserAgent = options.userAgent;
             }
 
+            
             const renderPromise = window.paypal.AuthButton(options.button || {}).render(container);
-
+            
             await new Promise(resolve => setTimeout(resolve, 100));
 
             const frame = container.querySelector('iframe');
@@ -110,7 +112,7 @@ for (const config of buttonConfigs) {
             };
 
         }, buttonConfig);
-
+        
         if (width === 0) {
             throw new Error(`Button width is 0`);
         }
@@ -120,27 +122,27 @@ for (const config of buttonConfigs) {
         }
 
         const existingExists = await fs.exists(filepath);
-
+        
         const [ screenshot, existing ] = await Promise.all([
             takeScreenshot(page, { x, y, width, height }),
             existingExists ? readPNG(filepath) : null
         ]);
 
         if (existing) {
-            const delta = await diffPNG(screenshot, existing);
+            // const delta = await diffPNG(screenshot, existing);
 
-            if (delta > DIFF_THRESHOLD) {
-                await existing.write(diffpath);
-                await screenshot.write(filepath);
+            // if (delta > DIFF_THRESHOLD) {
+            //     await existing.write(diffpath);
+            //     await screenshot.write(filepath);
 
-                let imgurUrl = '';
+            //     let imgurUrl = '';
                 
-                if (process.env.TRAVIS) {
-                    imgurUrl = await uploadToImgur(filepath);
-                }
+            //     if (process.env.TRAVIS) {
+            //         imgurUrl = await uploadToImgur(filepath);
+            //     }
 
-                throw new Error(`Button style changed with delta of ${ delta } for configuration:\n\n${ JSON.stringify(config, null, 4) }\n\nSee ${ diffpath } or ${ imgurUrl || '' }`);
-            }
+            //     throw new Error(`Button style changed with delta of ${ delta } for configuration:\n\n${ JSON.stringify(config, null, 4) }\n\nSee ${ diffpath } or ${ imgurUrl || '' }`);
+            // }
 
         } else {
             await screenshot.write(filepath);

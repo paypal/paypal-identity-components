@@ -4,8 +4,15 @@ export const BUTTON_LABEL = {
     CONNECT: ('connect' : 'connect')
 };
 
+export const BUTTON_FUNDING_TYPE = {
+    CREDIT: ('credit' : 'credit'),
+    PAYPAL: ('paypal' : 'paypal')
+};
+
 export const BUTTON_COLOR = {
-    BLUE: ('blue' : 'blue')
+    GOLD:        ('gold' : 'gold'),
+    BLUE:        ('blue' : 'blue'),
+    DARKBLUE:    ('darkblue' : 'darkblue')
 };
 
 export const TEXT_COLOR = {
