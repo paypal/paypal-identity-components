@@ -105,7 +105,8 @@ export type ButtonProps = {|
     nonce : string,
     scopes : $ReadOnlyArray<string>,
     responseType : string,
-    billingOptions : BillingOptions
+    billingOptions : BillingOptions,
+    state? : string
 |};
 
 export type ButtonPropsInputs = {|

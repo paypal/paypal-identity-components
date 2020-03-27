@@ -234,6 +234,12 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                 queryParam:    true,
                 required:      true,
                 serialization: 'base64'
+            },
+
+            state: {
+                type:       'string',
+                queryParam: true,
+                default:    () => ('')
             }
         }
     });
