@@ -1,12 +1,6 @@
 /* @flow */
-
 export const BUTTON_LABEL = {
     CONNECT: ('connect' : 'connect')
-};
-
-export const BUTTON_FUNDING_TYPE = {
-    CREDIT: ('credit' : 'credit'),
-    PAYPAL: ('paypal' : 'paypal')
 };
 
 export const BUTTON_COLOR = {

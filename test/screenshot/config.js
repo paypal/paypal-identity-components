@@ -44,10 +44,10 @@ for (const fundingSource of SUPPORTED_FUNDING_SOURCES) {
     buttonConfigs.push({
         button: {
             fundingSource,
-            ...DEFAULT_OAUTH_PROPS,
             style: {
-                ...(fundingSource === FUNDING.CREDIT ? { color: BUTTON_COLOR.DARKBLUE } : {})
-            }
+               
+            },
+            ...DEFAULT_OAUTH_PROPS
         }
     });
 }

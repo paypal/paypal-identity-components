@@ -144,7 +144,7 @@ export const DEFAULT_PROPS = {
     PLATFORM: PLATFORM.DESKTOP
 };
 
-const ALLOWED_COLORS = values(BUTTON_COLOR);
+// const ALLOWED_COLORS = values(BUTTON_COLOR);
 const ALLOWED_SHAPES = values(BUTTON_SHAPE);
 
 function getDefaultButtonContent() : ButtonContent {
@@ -159,9 +159,18 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
         throw new Error(`Expected props.style to be set`);
     }
 
+    let ALLOWED_COLORS = [ BUTTON_COLOR.BLUE ];
+    const { fundingSource = FUNDING.PAYPAL } = props;
+    if (fundingSource === FUNDING.PAYPAL) {
+        ALLOWED_COLORS = [ BUTTON_COLOR.BLUE, BUTTON_COLOR.GOLD ];
+    }
+    if (fundingSource === FUNDING.CREDIT) {
+        ALLOWED_COLORS = [ BUTTON_COLOR.DARKBLUE ];
+    }
+
     const {
         label,
-        color = BUTTON_COLOR.BLUE,
+        color = fundingSource === FUNDING.CREDIT ? BUTTON_COLOR.DARKBLUE : BUTTON_COLOR.BLUE,
         shape = BUTTON_SHAPE.RECT,
         height
     } = style;
@@ -171,11 +180,11 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
     }
 
     if (color && ALLOWED_COLORS.indexOf(color) === -1) {
-        throw new Error(`Unexpected style.color for ${ FUNDING.PAYPAL } button: ${ color }, expected ${ ALLOWED_COLORS.join(', ') }`);
+        throw new Error(`Unexpected style.color for ${ fundingSource } button: ${ color }, expected ${ ALLOWED_COLORS.join(', ') }`);
     }
 
     if (shape && ALLOWED_SHAPES.indexOf(shape) === -1) {
-        throw new Error(`Unexpected style.shape for ${ FUNDING.PAYPAL } button: ${ shape }, expected ${ ALLOWED_SHAPES.join(', ') }`);
+        throw new Error(`Unexpected style.shape for ${ fundingSource } button: ${ shape }, expected ${ ALLOWED_SHAPES.join(', ') }`);
     }
 
     if (height !== undefined) {
