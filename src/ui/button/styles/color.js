@@ -13,6 +13,18 @@ export const buttonColorStyle = `
         color: #fff;
     }
 
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.GOLD } {
+        background: #ffc439;
+    }
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.GOLD }:hover {
+        filter: brightness(0.95);
+    }
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.GOLD }:focus {
+        outline: none;
+        box-shadow: 0px 0px 1px 3px #0c67ff inset;
+    }
+
+
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLUE } {
         background: #009cde;
     }
@@ -25,4 +37,16 @@ export const buttonColorStyle = `
         outline: none;
         box-shadow: 0px 0px 1px 3px #0c67ff inset;
     }
+
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.DARKBLUE } {
+        background: #003087;
+    }
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.DARKBLUE }:hover {
+        filter: brightness(1.2);
+    }
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.DARKBLUE }:focus {
+        outline: none;
+        box-shadow: 0px 0px 1px 3px #0c67ff inset;
+    }
+
 `;

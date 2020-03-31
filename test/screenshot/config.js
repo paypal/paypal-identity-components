@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable flowtype/require-exact-type */
 /* @flow */
 import { FUNDING } from '@paypal/sdk-constants';
 
@@ -10,14 +12,15 @@ const SUPPORTED_FUNDING_SOURCES : $ReadOnlyArray<$Values<typeof FUNDING>> = [
 
 const RESPONSIVE_WIDTHS = [ 144, 222, 465, 670 ];
 
-type ButtonConfig = {|
+type ButtonConfig = {
     only? : boolean,
     filename? : string,
     userAgent? : string,
-    container? : {
+    container? : {|
         width : number
-    },
+    |},
     button? : {
+        scopes : $ReadOnlyArray<string>,
         fundingSource? : $Values<typeof FUNDING>,
         locale? : string,
         style? : {
@@ -26,7 +29,7 @@ type ButtonConfig = {|
             label? : string
         }
     }
-|};
+};
 
 export const buttonConfigs : Array<ButtonConfig> = [];
 
@@ -44,6 +47,8 @@ for (const fundingSource of SUPPORTED_FUNDING_SOURCES) {
     buttonConfigs.push({
         button: {
             fundingSource,
+            // style: {
+            // },
             ...DEFAULT_OAUTH_PROPS
         }
     });
@@ -53,6 +58,7 @@ for (const label of [ BUTTON_LABEL.CONNECT ]) {
     buttonConfigs.push({
         button: {
             style: {
+                // color: 'blue',
                 label
             },
             ...DEFAULT_OAUTH_PROPS
@@ -67,7 +73,7 @@ for (const width of RESPONSIVE_WIDTHS) {
         },
         button: {
             style: {
-
+               
             },
             ...DEFAULT_OAUTH_PROPS
         }

@@ -56,7 +56,7 @@ for (const config of buttonConfigs) {
 
     const testPromise = (async () => {
         const { page } = await setupBrowserPage;
-
+            
         const filepath = `${ IMAGE_DIR }/${ filename }.png`;
         const diffpath = `${ IMAGE_DIR }/${ filename }-old.png`;
 
@@ -86,8 +86,9 @@ for (const config of buttonConfigs) {
                 window.navigator.mockUserAgent = options.userAgent;
             }
 
+            
             const renderPromise = window.paypal.AuthButton(options.button || {}).render(container);
-
+            
             await new Promise(resolve => setTimeout(resolve, 100));
 
             const frame = container.querySelector('iframe');
@@ -110,7 +111,7 @@ for (const config of buttonConfigs) {
             };
 
         }, buttonConfig);
-
+        
         if (width === 0) {
             throw new Error(`Button width is 0`);
         }
@@ -120,7 +121,7 @@ for (const config of buttonConfigs) {
         }
 
         const existingExists = await fs.exists(filepath);
-
+        
         const [ screenshot, existing ] = await Promise.all([
             takeScreenshot(page, { x, y, width, height }),
             existingExists ? readPNG(filepath) : null
@@ -128,11 +129,12 @@ for (const config of buttonConfigs) {
 
         if (existing) {
             const delta = await diffPNG(screenshot, existing);
-
+            
             if (delta > DIFF_THRESHOLD) {
+                
                 await existing.write(diffpath);
                 await screenshot.write(filepath);
-
+                
                 let imgurUrl = '';
                 
                 if (process.env.TRAVIS) {

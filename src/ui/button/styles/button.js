@@ -48,7 +48,7 @@ export const buttonStyle = `
     }
 
     .${ LOGO_CLASS.LOGO } {
-        padding: 0;
+        padding: 0 0 0 5px;
         display: inline-block;
         background: none;
         border: none;
