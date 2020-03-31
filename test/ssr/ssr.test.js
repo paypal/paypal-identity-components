@@ -10,7 +10,7 @@ jest.setTimeout(120000);
 
 const cache = {};
 
-async function getButtonScript() : Promise<{ AuthButton : (Object) => ElementNode, DEFAULT_PROPS : Object }> {
+async function getButtonScript() : Promise<{| AuthButton : (Object) => ElementNode, DEFAULT_PROPS : Object |}> {
 
     const config = {
         entry:         './src/ui/button',

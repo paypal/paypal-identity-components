@@ -122,9 +122,9 @@ export type ButtonPropsInputs = {|
     authButtonSessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     sessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     nonce? : string,
-    csp? : {
+    csp? : {|
         nonce? : string
-    },
+    |},
     content? : ButtonContent,
     onClick? : OnClick
 |};
