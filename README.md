@@ -1,6 +1,10 @@
 PayPal Auth Components
 ----------------------
 
+[![npm version](https://img.shields.io/npm/v/@paypal/identity-components.svg?style=flat-square)](https://www.npmjs.com/package/@paypal/identity-components) [![build status](https://img.shields.io/travis/paypal/paypal-identity-components/master.svg?style=flat-square)](https://travis-ci.org/paypal/paypal-identity-components)
+
+[![dependencies Status](https://david-dm.org/paypal/paypal-identity-components/status.svg)](https://david-dm.org/paypal/paypal-identity-components) [![devDependencies Status](https://david-dm.org/paypal/paypal-identity-components/dev-status.svg)](https://david-dm.org/paypal/paypal-identity-components?type=dev)
+
 ## Development
 
 Please feel free to follow the [Contribution Guidelines](./CONTRIBUTING.md) to contribute to this repository. PRs are welcome, but for major changes please raise an issue first.
