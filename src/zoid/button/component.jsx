@@ -18,6 +18,7 @@ import { validateScopes, validateResponseType } from './util';
 import { containerTemplate } from './container';
 import { PrerenderedButton } from './prerender';
 
+// $FlowFixMe
 export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> => {
     const AuthButton = create({
         tag:  'paypal-auth-button',
@@ -247,7 +248,6 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
     const ButtonWrapper = (props = {}) => {
         const instance = AuthButton(props);
 
-        // $FlowFixMe
         instance.isEligible = () => {
             const { fundingSource = FUNDING.PAYPAL } = props;
             const fundingEligibility = getRefinedFundingEligibility();

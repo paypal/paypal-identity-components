@@ -152,7 +152,6 @@ function getDefaultButtonContent() : ButtonContent {
     return {};
 }
 
-// $FlowFixMe
 export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonStyleInputs) : ButtonStyle {
 
     if (!style) {
@@ -160,6 +159,7 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
     }
 
     let ALLOWED_COLORS = [ BUTTON_COLOR.BLUE ];
+    // $FlowFixMe
     const { fundingSource = FUNDING.PAYPAL } = props;
     if (fundingSource === FUNDING.PAYPAL) {
         ALLOWED_COLORS = [ BUTTON_COLOR.BLUE, BUTTON_COLOR.GOLD ];
@@ -215,7 +215,6 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
     let {
         clientID,
         fundingSource,
-        // $FlowFixMe
         style = {},
         locale = DEFAULT_PROPS.LOCALE,
         env = DEFAULT_PROPS.ENV,
@@ -255,6 +254,7 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
         }
     }
 
+    // $FlowFixMe
     style = normalizeButtonStyle(props, style);
 
     return { clientID, fundingSource, style, locale, env, platform,
