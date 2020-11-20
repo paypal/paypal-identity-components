@@ -14,7 +14,7 @@ module.exports = {
     __PAYPAL_IDENTITY__: {
         __URI__: {
             __AUTH__:   '/connect',
-            __BUTTON__: '/apps/connect'
+            __BUTTON__: '/apps/connectButton'
         }
     }
 };

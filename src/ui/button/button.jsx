@@ -119,7 +119,6 @@ export function AuthButton(props : ButtonProps) : ElementNode {
             <Style
                 nonce={ nonce }
                 style={ style }
-                locale={ locale }
             />
 
             <div

@@ -45,6 +45,7 @@ export function PrerenderedButton({ nonce, onRenderAuth, props } : PrerenderedBu
     return (
         <html>
             <body>
+                {/* $FlowFixMe */}
                 <AuthButton { ...props } onClick={ handleClick } />
             </body>
         </html>
