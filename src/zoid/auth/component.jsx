@@ -123,9 +123,10 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                     queryParam: true,
                     default:    () => FUNDING.PAYPAL
                 },
-                
+
                 onApprove: {
-                    type:     'function'
+                    type:     'function',
+                    alias:    'onAuthorize'
                 },
                 
                 accessToken: {
