@@ -1,12 +1,16 @@
 /* @flow */
 export const BUTTON_LABEL = {
-    CONNECT: ('connect' : 'connect')
+    CONNECT: ('connect' : 'connect'),
+    CONNECT_WITH_PAYPAL:  ('connect_with_paypal' : 'Connect with PayPal')
 };
 
 export const BUTTON_COLOR = {
     GOLD:        ('gold' : 'gold'),
     BLUE:        ('blue' : 'blue'),
-    DARKBLUE:    ('darkblue' : 'darkblue')
+    DARKBLUE:    ('darkblue' : 'darkblue'),
+    SILVER:      ('silver': 'silver'),
+    WHITE:      ('white': 'white'),
+    BLACK:      ('black': 'black')
 };
 
 export const TEXT_COLOR = {

@@ -1,7 +1,7 @@
 /* @flow */
 
 import { ZalgoPromise } from 'zalgo-promise/src';
-import { values, uniqueID } from 'belter/src';
+import { values, uniqueID, isGoogleSearchApp } from 'belter/src';
 import { FUNDING, PLATFORM, INTENT,
     ENV, COUNTRY, LANG, COUNTRY_LANGS, type LocaleType, CARD } from '@paypal/sdk-constants/src';
 import { type CrossDomainWindowType } from 'cross-domain-utils/src';
@@ -158,11 +158,11 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
         throw new Error(`Expected props.style to be set`);
     }
 
-    let ALLOWED_COLORS = [ BUTTON_COLOR.BLUE ];
+    let ALLOWED_COLORS = [ BUTTON_COLOR.BLACK, BUTTON_COLOR.BLUE, BUTTON_COLOR.DARKBLUE, BUTTON_COLOR.GOLD, BUTTON_COLOR.SILVER, BUTTON_COLOR.WHITE ];
     // $FlowFixMe
     const { fundingSource = FUNDING.PAYPAL } = props;
     if (fundingSource === FUNDING.PAYPAL) {
-        ALLOWED_COLORS = [ BUTTON_COLOR.BLUE, BUTTON_COLOR.GOLD ];
+        ALLOWED_COLORS = [ BUTTON_COLOR.BLACK, BUTTON_COLOR.BLUE, BUTTON_COLOR.DARKBLUE, BUTTON_COLOR.GOLD, BUTTON_COLOR.SILVER, BUTTON_COLOR.WHITE ];
     }
     if (fundingSource === FUNDING.CREDIT) {
         ALLOWED_COLORS = [ BUTTON_COLOR.DARKBLUE ];

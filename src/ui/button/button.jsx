@@ -32,16 +32,16 @@ type PPCreditLogoProps = {|
 // function to render the "PP" abreviated logo
 function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
     const { color = BUTTON_COLOR.BLUE } = style;
-    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE) {
+    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color === BUTTON_COLOR.BLACK) {
         return <PPLogo logoColor={ LOGO_COLOR.WHITE } />;
     }
 
-    if (color === BUTTON_COLOR.GOLD) {
+    if (color === BUTTON_COLOR.GOLD || color === BUTTON_COLOR.WHITE || color === BUTTON_COLOR.SILVER) {
         return <PPLogo logoColor={ LOGO_COLOR.BLUE } />;
     }
 
     throw new Error(`Unsupported color (PP logo): ${ color }`);
-    
+
 }
 
 // function to render the "CREDIT" logo
@@ -60,11 +60,11 @@ function PPCreditLogo({ style, locale } : PPCreditLogoProps) : ComponentNode<Log
 function Logo({ style } : LogoProps) : ComponentNode<LogoProps> {
     const { color } = style;
 
-    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE) {
+    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color == BUTTON_COLOR.BLACK) {
         return <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />;
     }
 
-    if (color === BUTTON_COLOR.GOLD) {
+    if(color== BUTTON_COLOR.SILVER || color== BUTTON_COLOR.WHITE || color === BUTTON_COLOR.GOLD) {
         return <PayPalLogo logoColor={ LOGO_COLOR.BLUE } />;
     }
 
@@ -84,7 +84,8 @@ function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
     }
 
     if (label === BUTTON_LABEL.CONNECT) {
-        return <Text>{ content.connectLabel }</Text>;
+        //return <Text>{ content.connectLabel }</Text>;
+        return <Text>Connect with PayPal</Text>;
     }
 
     throw new Error(`Unsupported button label: ${ label || 'undefined' }`);
