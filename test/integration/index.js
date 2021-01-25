@@ -8,8 +8,7 @@ window.mockDomain = 'mock://www.merchant-site.com';
 
 const MEM_PER_TEST = 2;
 
-const memoryReported = (window.performance && window.performance.memory &&
-                      window.performance.memory.usedJSHeapSize);
+const memoryReported = (window.performance && window.performance.memory && window.performance.memory.usedJSHeapSize);
 
 function getMemory() : number {
     return window.performance.memory.usedJSHeapSize / Math.pow(2, 20);

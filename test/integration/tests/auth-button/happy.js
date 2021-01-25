@@ -27,6 +27,7 @@ for (const flow of [ 'popup', 'iframe' ]) {
                 window.paypal.AuthButton({
                     responseType:   'code',
                     scopes:          [ 'email' ],
+                    inputLabel: 'connect',
                     billingOptions: {
                         type:        'MERCHANT',
                         productCode: 'PRODUCT_CODE',

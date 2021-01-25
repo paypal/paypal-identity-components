@@ -38,10 +38,12 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                     />
                 ).render(dom({ doc }));
             },
+            
 
             containerTemplate: ({ context, close, focus, doc, event, frame, prerenderFrame }) => {
 
                 return (
+                    
                     <Overlay
                         context={ context }
                         close={ close }

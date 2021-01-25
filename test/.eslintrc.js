@@ -11,7 +11,8 @@ module.exports = {
         'afterAll': true,
         'test': true,
         'jest': true,
-        'page': true
+        'page': true,
+        'browserlist': true
     },
 
 
@@ -19,6 +20,8 @@ module.exports = {
         'compat/compat': 'off',
         'max-lines': 'off',
         'no-restricted-globals': 'off',
-        'promise/no-native': 'off'
+        'promise/no-native': 'off',
+        'key-spacing': 'off',
+        'import/no-commonjs': 'off'
     }
 };

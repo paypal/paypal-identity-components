@@ -9,6 +9,8 @@ import { SpinnerPage } from '@paypal/common-components/src';
 import { DEFAULT_POPUP_SIZE } from '../auth';
 import { AuthButton } from '../../ui';
 import { type ButtonProps } from '../../ui/button/props';
+import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
+
 
 type PrerenderedButtonProps = {|
     nonce : ?string,
@@ -19,7 +21,7 @@ type PrerenderedButtonProps = {|
 |};
 
 export function PrerenderedButton({ nonce, onRenderAuth, props } : PrerenderedButtonProps) : ChildType {
-
+  
     const handleClick = () => {
         if (supportsPopups()) {
             const win = assertSameDomain(popup('', {
@@ -42,11 +44,11 @@ export function PrerenderedButton({ nonce, onRenderAuth, props } : PrerenderedBu
         }
     };
 
+    
     return (
         <html>
             <body>
-                {/* $FlowFixMe */}
-                <AuthButton { ...props } onClick={ handleClick } />
+                <SpinnerPage nonce={ nonce } />
             </body>
         </html>
     );

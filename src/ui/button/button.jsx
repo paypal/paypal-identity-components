@@ -5,12 +5,14 @@ import { node, type ElementNode, type ComponentNode } from 'jsx-pragmatic/src';
 import { PayPalLogo, LOGO_COLOR, PPLogo, CreditLogo } from '@paypal/sdk-logos/src';
 import { type LocaleType, FUNDING } from '@paypal/sdk-constants/src';
 import { noop } from 'belter/src';
+import { SpinnerPage } from '@paypal/common-components/src';
 
-import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR, BUTTON_LABEL } from '../../constants';
+import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
 import { Text } from '../text';
 
 import { normalizeButtonProps, type ButtonStyle, type ButtonContent, type ButtonPropsInputs } from './props';
 import { Style } from './style';
+
 
 type ButtonProps = ButtonPropsInputs & {|
     onClick? : Function
@@ -60,11 +62,11 @@ function PPCreditLogo({ style, locale } : PPCreditLogoProps) : ComponentNode<Log
 function Logo({ style } : LogoProps) : ComponentNode<LogoProps> {
     const { color } = style;
 
-    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color == BUTTON_COLOR.BLACK) {
+    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color === BUTTON_COLOR.BLACK) {
         return <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />;
     }
 
-    if(color== BUTTON_COLOR.SILVER || color== BUTTON_COLOR.WHITE || color === BUTTON_COLOR.GOLD) {
+    if (color === BUTTON_COLOR.SILVER || color === BUTTON_COLOR.WHITE || color === BUTTON_COLOR.GOLD) {
         return <PayPalLogo logoColor={ LOGO_COLOR.BLUE } />;
     }
 
@@ -73,7 +75,7 @@ function Logo({ style } : LogoProps) : ComponentNode<LogoProps> {
 
 type LabelProps = {|
     style : ButtonStyle,
-    content : ButtonContent
+    content : string
 |};
 
 function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
@@ -83,9 +85,9 @@ function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
         return;
     }
 
-    if (label === BUTTON_LABEL.CONNECT) {
-        //return <Text>{ content.connectLabel }</Text>;
-        return <Text>Connect with PayPal</Text>;
+    if (label) {
+        return <Text>{ label }</Text>;
+        // return <Text>Connect with PayPal</Text>;
     }
 
     throw new Error(`Unsupported button label: ${ label || 'undefined' }`);
@@ -93,14 +95,15 @@ function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
 
 export function AuthButton(props : ButtonProps) : ElementNode {
     const { onClick = noop } = props;
+    const { displayLabel = false } = props;
     const { fundingSource, style, locale, env,
-        nonce, content } = normalizeButtonProps(props);
+        nonce, content, customLabel } = normalizeButtonProps(props);
     const { shape, color } = style;
-
     const clickHandler = (event, opts) => {
         event.preventDefault();
         event.stopPropagation();
         event.target.blur();
+        
         onClick(event, { fundingSource, ...opts });
     };
 
@@ -123,6 +126,7 @@ export function AuthButton(props : ButtonProps) : ElementNode {
             />
 
             <div
+            
                 role='button'
                 { ...{
                     [ATTRIBUTE.BUTTON]:         true,
@@ -138,16 +142,16 @@ export function AuthButton(props : ButtonProps) : ElementNode {
                 onClick={ clickHandler }
                 onKeyPress={ keypressHandler }
                 tabindex='0'>
-
-                <div class={ CLASS.BUTTON_LABEL }>
-                    <PPSymbol style={ style } />
-                    <Logo style={ style } />
-                    {
-                        fundingSource === FUNDING.CREDIT ?
-                            <PPCreditLogo style={ style } locale={ locale } /> :
-                            <Label style={ style } content={ content } />
-                    }
-                </div>
+                    
+                { customLabel &&
+                    <div class={ CLASS.BUTTON_LABEL }>
+                        <PPSymbol style={ style } />
+                        {
+                            fundingSource === FUNDING.CREDIT ?
+                                <PPCreditLogo style={ style } locale={ locale } /> :
+                                <Label style={ style } content={ customLabel !== undefined ? customLabel : 'Connect with PayPal' } />
+                        }
+                    </div>}
             </div>
         </div>
     );

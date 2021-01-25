@@ -269,7 +269,6 @@ export function onWindowOpen({ time = 500 } : {| time? : number |} = {}) : Zalgo
 
         const winOpen = window.open;
         const documentCreateElement = document.createElement;
-
         const reset = () => {
             window.open = winOpen;
             // $FlowFixMe

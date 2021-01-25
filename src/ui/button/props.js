@@ -1,7 +1,7 @@
 /* @flow */
 
 import { ZalgoPromise } from 'zalgo-promise/src';
-import { values, uniqueID, isGoogleSearchApp } from 'belter/src';
+import { values, uniqueID } from 'belter/src';
 import { FUNDING, PLATFORM, INTENT,
     ENV, COUNTRY, LANG, COUNTRY_LANGS, type LocaleType, CARD } from '@paypal/sdk-constants/src';
 import { type CrossDomainWindowType } from 'cross-domain-utils/src';
@@ -76,7 +76,9 @@ export type RenderButtonProps = {|
     sessionID : string,
     authButtonSessionID : string,
     nonce : string,
-    content : ButtonContent
+    connectLabel? : string,
+    content : string,
+    customLabel : string
 |};
 
 export type PrerenderDetails = {|
@@ -106,8 +108,9 @@ export type ButtonProps = {|
     scopes : $ReadOnlyArray<string>,
     responseType : string,
     billingOptions : BillingOptions,
-    state? : string
-|};
+    state? : string,
+    connectLabel? : string
+   |};
 
 export type ButtonPropsInputs = {|
     clientID : string,
@@ -122,12 +125,14 @@ export type ButtonPropsInputs = {|
     authButtonSessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     sessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     nonce? : string,
+    
     csp? : {|
         nonce? : string
     |},
-    content? : ButtonContent,
+    displayLabel? : boolean,
+    customLabel : string,
     onClick? : OnClick
-|};
+  |};
 
 export const DEFAULT_STYLE = {
     COLOR:  BUTTON_COLOR.BLUE,
@@ -147,10 +152,10 @@ export const DEFAULT_PROPS = {
 // const ALLOWED_COLORS = values(BUTTON_COLOR);
 const ALLOWED_SHAPES = values(BUTTON_SHAPE);
 
-function getDefaultButtonContent() : ButtonContent {
-    // $FlowFixMe
-    return {};
-}
+// function getDefaultButtonContent() : ButtonContent {
+//     // $FlowFixMe
+//     return  'Connect with PayPal';
+// }
 
 export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonStyleInputs) : ButtonStyle {
 
@@ -167,17 +172,16 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
     if (fundingSource === FUNDING.CREDIT) {
         ALLOWED_COLORS = [ BUTTON_COLOR.DARKBLUE ];
     }
-
+    
     const {
         label,
         color = fundingSource === FUNDING.CREDIT ? BUTTON_COLOR.DARKBLUE : BUTTON_COLOR.BLUE,
-        shape = BUTTON_SHAPE.RECT,
+        shape = BUTTON_SHAPE.RECT || BUTTON_SHAPE.PILL,
         height
     } = style;
-
-    if (label && values(BUTTON_LABEL).indexOf(label) === -1) {
-        throw new Error(`Invalid label: ${ label }`);
-    }
+    // if (label && values(BUTTON_LABEL).indexOf(label) === -1) {
+    //     throw new Error(`Invalid label: ${ label }`);
+    // }
 
     if (color && ALLOWED_COLORS.indexOf(color) === -1) {
         throw new Error(`Unexpected style.color for ${ fundingSource } button: ${ color }, expected ${ ALLOWED_COLORS.join(', ') }`);
@@ -206,16 +210,16 @@ const COUNTRIES = values(COUNTRY);
 const ENVS = values(ENV);
 const PLATFORMS = values(PLATFORM);
 
-export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonProps {
+export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButtonProps {
 
     if (!props) {
         throw new Error(`Expected props`);
     }
-
+ 
     let {
         clientID,
         fundingSource,
-        style = {},
+        style,
         locale = DEFAULT_PROPS.LOCALE,
         env = DEFAULT_PROPS.ENV,
         platform = DEFAULT_PROPS.PLATFORM,
@@ -223,7 +227,8 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
         authButtonSessionID = uniqueID(),
         csp = {},
         nonce = '',
-        content = getDefaultButtonContent()
+        content = '',
+        customLabel
     } = props;
 
     const { country, lang } = locale;
@@ -258,5 +263,5 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
     style = normalizeButtonStyle(props, style);
 
     return { clientID, fundingSource, style, locale, env, platform,
-        authButtonSessionID, sessionID, nonce, content };
+        authButtonSessionID, sessionID, nonce, content, customLabel };
 }
