@@ -106,8 +106,8 @@ for (const config of buttonConfigs) {
             return {
                 x:      rect.left,
                 y:      rect.top,
-                width:  rect.width,
-                height: rect.height
+                width:  rect.width || 90,
+                height: rect.height || 60
             };
 
         }, buttonConfig);

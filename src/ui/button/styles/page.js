@@ -53,7 +53,7 @@ export const pageStyle = `
     @media only screen and (min-width: 800px) {
         body {
             height: 60px;
-            font-size: 24px;
+            font-size: 22px;
         }
     }
 `;

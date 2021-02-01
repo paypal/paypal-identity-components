@@ -3,7 +3,7 @@
 import { ENV } from '@paypal/sdk-constants/src';
 import { LOGO_CLASS } from '@paypal/sdk-logos/src';
 
-import { CLASS } from '../../../constants';
+import { CLASS, BUTTON_SHAPE } from '../../../constants';
 
 export const buttonStyle = `
 
@@ -48,11 +48,11 @@ export const buttonStyle = `
     }
 
     .${ LOGO_CLASS.LOGO } {
-        padding: 0 0 0 5px;
+        padding: 0 7px 0 5px;
         display: inline-block;
         background: none;
         border: none;
-        width: auto;
+        width: 32px;
     }
 
     .${ CLASS.TEXT }, .${ CLASS.SPACE } {
@@ -71,5 +71,8 @@ export const buttonStyle = `
         vertical-align: top;
         height: 100%;
         text-align: left;
+    }
+    .${ CLASS.SHAPE }-${ BUTTON_SHAPE.PILL }  {
+        border-radius: 50px;
     }
 `;

@@ -14,12 +14,13 @@ import { FUNDING } from '@paypal/sdk-constants/src';
 
 import { normalizeButtonStyle, type ButtonProps } from '../../ui/button/props';
 
-import { validateScopes, validateResponseType } from './util';
+import { validateScopes, validateResponseType, validateInputLabel } from './util';
 import { containerTemplate } from './container';
 import { PrerenderedButton } from './prerender';
 
 // $FlowFixMe
 export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> => {
+   
     const AuthButton = create({
         tag:  'paypal-auth-button',
         url: () => `${ getPayPalDomain() }${ __PAYPAL_IDENTITY__.__URI__.__BUTTON__ }`,
@@ -30,12 +31,13 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
             width:  false,
             height: true
         },
-
+        
         containerTemplate,
 
         logger: getLogger(),
-
+        
         prerenderTemplate: ({ state, props, doc }) => {
+          
             return (
                 <PrerenderedButton
                     nonce={ props.nonce }
@@ -230,6 +232,15 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                 }
             },
 
+            inputLabel: {
+                type:       'string',
+                queryParam: true,
+                required:   true,
+                validate:   ({ value }) => {
+                    return validateInputLabel(value);
+                }
+            },
+
             billingOptions: {
                 type:          'object',
                 queryParam:    true,
@@ -247,7 +258,6 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
 
     const ButtonWrapper = (props = {}) => {
         const instance = AuthButton(props);
-
         instance.isEligible = () => {
             const { fundingSource = FUNDING.PAYPAL } = props;
             const fundingEligibility = getRefinedFundingEligibility();

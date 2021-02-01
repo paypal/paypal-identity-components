@@ -45,7 +45,7 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
     // $FlowFixMe
     const { style } = props;
     const { label } = style;
-
+    
     const setupAutoResize = (el) => {
         event.on(EVENT.RESIZE, ({ width: newWidth, height: newHeight }) => {
             if (typeof newWidth === 'number') {

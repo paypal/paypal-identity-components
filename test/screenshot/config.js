@@ -36,6 +36,7 @@ export const buttonConfigs : Array<ButtonConfig> = [];
 const DEFAULT_OAUTH_PROPS = {
     scopes:          [ 'email' ],
     responseType:   'code',
+    inputLabel: 'connect',
     billingOptions: {
         type:        'MERCHANT',
         productCode:    'PRODUCT_CODE',
