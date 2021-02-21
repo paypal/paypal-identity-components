@@ -42,7 +42,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.paypal.com/paypal/paypal-auth.git"
+    "url": "https://github.com/paypal/paypal-identity-components.git"
   },
   "homepage": "https://developer.paypal.com/",
   "keywords": [
