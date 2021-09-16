@@ -19,7 +19,7 @@ export const buttonStyle = `
         font-smoothing: antialiased;
         z-index: 0;
         min-width: 200px;
-        max-width: 300px;
+      
         height: 100%;
         box-sizing: border-box;
 
@@ -50,20 +50,20 @@ export const buttonStyle = `
     }
 
     .${ LOGO_CLASS.LOGO } {
-        padding: 0 7px 0 5px;
+        padding: 0px;
         display: inline-block;
         background: none;
         border: none;
-        width: 32px;
+        width: auto;
     }
 
     .${ CLASS.TEXT }, .${ CLASS.SPACE } {
         display: inline-block;
         white-space: pre;
+        padding-left:7px;
     }
 
     .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
-        height: 25px;
         position: relative;
         top: 50%;
         transform: translateY(-50%);
@@ -74,6 +74,7 @@ export const buttonStyle = `
         height: 100%;
         text-align: left;
     }
+       
     .${ CLASS.SHAPE }-${ BUTTON_SHAPE.PILL }  {
         border-radius: 50px;
     }

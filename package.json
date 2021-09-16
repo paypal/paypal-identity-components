@@ -1,6 +1,6 @@
 {
   "name": "@paypal/identity-components",
-  "version": "5.0.3",
+  "version": "5.0.4-alpha1",
   "description": "PayPal Identity components, for integrating auth products.",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,9 @@
     "flow-typed": "rm -rf flow-typed && flow-typed install",
     "flow": "flow",
     "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
-    "test": "if [ ! $SKIP_TEST ]; then npm run lint && npm run flow-typed  && npm run karma && npm run jest-screenshot; fi;",
+    "test": "if [ ! $SKIP_TEST ]; then npm run lint && npm run flow-typed && npm run flow && npm run jest-ssr && npm run karma && npm run jest-screenshot; fi;",
     "webpack": "babel-node $(npm bin)/webpack --progress",
-    "build": "npm run test && npm run webpack",
+    "build": "npm run webpack",
     "release": "./scripts/publish.sh",
     "release:patch": "./scripts/publish.sh patch",
     "release:minor": "./scripts/publish.sh minor",

@@ -7,9 +7,9 @@ import { assertSameDomain, type CrossDomainWindowType } from 'cross-domain-utils
 import { SpinnerPage } from '@paypal/common-components/src';
 
 import { DEFAULT_POPUP_SIZE } from '../auth';
-import { AuthButton } from '../../ui';
+// import { AuthButton } from '../../ui';
 import { type ButtonProps } from '../../ui/button/props';
-import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
+// import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
 
 
 type PrerenderedButtonProps = {|
@@ -35,7 +35,7 @@ export function PrerenderedButton({ nonce, onRenderAuth, props } : PrerenderedBu
                 <SpinnerPage nonce={ nonce } />
             ).render(dom({ doc }));
 
-            writeElementToWindow(win, spinner);
+            writeElementToWindow(win, spinner, props);
 
             onRenderAuth({ win });
 
@@ -48,7 +48,8 @@ export function PrerenderedButton({ nonce, onRenderAuth, props } : PrerenderedBu
     return (
         <html>
             <body>
-                <SpinnerPage nonce={ nonce } />
+                <SpinnerPage nonce={ nonce } onClick={ handleClick } />
+                {/* <AuthButton { ...props } onClick={ handleClick } /> */}
             </body>
         </html>
     );

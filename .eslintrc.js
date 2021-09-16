@@ -29,8 +29,7 @@ module.exports = {
         'react/display-name': 'off',
         'react/require-default-props': 'off',
         'react/forbid-component-props': 'off',
-        'react/no-unused-prop-types': 'off',
-        'no-unused-vars': 'off'
+        'react/no-unused-prop-types': 'off'
           
     }
 };

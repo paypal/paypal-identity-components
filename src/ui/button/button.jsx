@@ -2,15 +2,13 @@
 /** @jsx node */
 
 import { node, type ElementNode, type ComponentNode } from 'jsx-pragmatic/src';
-import { PayPalLogo, LOGO_COLOR, PPLogo, CreditLogo } from '@paypal/sdk-logos/src';
-import { type LocaleType, FUNDING } from '@paypal/sdk-constants/src';
+import {  LOGO_COLOR, PPLogo } from '@paypal/sdk-logos/src';
 import { noop } from 'belter/src';
-import { SpinnerPage } from '@paypal/common-components/src';
 
 import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
 import { Text } from '../text';
 
-import { normalizeButtonProps, type ButtonStyle, type ButtonContent, type ButtonPropsInputs } from './props';
+import { normalizeButtonProps, type ButtonStyle, type ButtonPropsInputs } from './props';
 import { Style } from './style';
 
 
@@ -26,10 +24,10 @@ type LogoProps = {|
     style : ButtonStyle
 |};
 
-type PPCreditLogoProps = {|
-    style : ButtonStyle,
-    locale : LocaleType
-|};
+// type PPCreditLogoProps = {|
+//     style : ButtonStyle,
+//     locale : LocaleType
+// |};
 
 // function to render the "PP" abreviated logo
 function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
@@ -46,33 +44,33 @@ function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
     throw new Error(`Unsupported color (PP logo): ${ color }`);
 
 }
-
+// Have to revist once we introduce the other form of buttons.
 // function to render the "CREDIT" logo
-function PPCreditLogo({ style, locale } : PPCreditLogoProps) : ComponentNode<LogoProps> {
-    const { color } = style;
+// function PPCreditLogo({ style, locale } : PPCreditLogoProps) : ComponentNode<LogoProps> {
+//     const { color } = style;
 
-    if (color === BUTTON_COLOR.DARKBLUE) {
-        return <CreditLogo logoColor={ LOGO_COLOR.WHITE } locale={ locale } />;
-    }
+//     if (color === BUTTON_COLOR.DARKBLUE) {
+//         return <CreditLogo logoColor={ LOGO_COLOR.WHITE } locale={ locale } />;
+//     }
 
-    throw new Error(`Unsupported color (Credit logo): ${ color }`);
+//     throw new Error(`Unsupported color (Credit logo): ${ color }`);
     
-}
+// }
 
 // function to render the "PayPal" brand logo
-function Logo({ style } : LogoProps) : ComponentNode<LogoProps> {
-    const { color } = style;
+// function Logo({ style } : LogoProps) : ComponentNode<LogoProps> {
+//     const { color } = style;
 
-    if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color === BUTTON_COLOR.BLACK) {
-        return <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />;
-    }
+//     if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color === BUTTON_COLOR.BLACK) {
+//         return <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />;
+//     }
 
-    if (color === BUTTON_COLOR.SILVER || color === BUTTON_COLOR.WHITE || color === BUTTON_COLOR.GOLD) {
-        return <PayPalLogo logoColor={ LOGO_COLOR.BLUE } />;
-    }
+//     if (color === BUTTON_COLOR.SILVER || color === BUTTON_COLOR.WHITE || color === BUTTON_COLOR.GOLD) {
+//         return <PayPalLogo logoColor={ LOGO_COLOR.BLUE } />;
+//     }
 
-    throw new Error(`Unsupported color (Paypal logo): ${ color }`);
-}
+//     throw new Error(`Unsupported color (Paypal logo): ${ color }`);
+// }
 
 type LabelProps = {|
     style : ButtonStyle,
@@ -81,24 +79,22 @@ type LabelProps = {|
 
 function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
     const { label } = style;
-
+    const { text } = content;
     if (!label) {
-        return <Text>Connect with PayPal</Text>;
+        return <Text>Log in with PayPal</Text>;
     }
 
     if (label) {
         return <Text>{ label }</Text>;
-        // return <Text>Connect with PayPal</Text>;
     }
 
-    throw new Error(`Unsupported button label: ${ label || 'undefined' }`);
+    throw new Error(`Unsupported button label: ${ label || text }`);
 }
 
 export function AuthButton(props : ButtonProps) : ElementNode {
     const { onClick = noop } = props;
-    const { displayLabel = false } = props;
-    const { fundingSource, style, locale, env,
-        nonce, content, customLabel } = normalizeButtonProps(props);
+    const { fundingSource, style,  env,
+        nonce, customLabel } = normalizeButtonProps(props);
     const { shape, color } = style;
     const clickHandler = (event, opts) => {
         event.preventDefault();
@@ -148,9 +144,7 @@ export function AuthButton(props : ButtonProps) : ElementNode {
                     <div class={ CLASS.BUTTON_LABEL }>
                         <PPSymbol style={ style } />
                         {
-                            fundingSource === FUNDING.CREDIT ?
-                                <PPCreditLogo style={ style } locale={ locale } /> :
-                                <Label style={ style } content={ customLabel !== undefined ? customLabel : 'Connect with PayPal' } />
+                            <Label style={ style } content={ customLabel } />
                         }
                     </div>}
             </div>
