@@ -153,7 +153,7 @@ export const DEFAULT_PROPS = {
 const ALLOWED_SHAPES = values(BUTTON_SHAPE);
 
 export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonStyleInputs) : ButtonStyle {
-
+ 
     if (!style) {
         throw new Error(`Expected props.style to be set`);
     }
@@ -200,7 +200,7 @@ const ENVS = values(ENV);
 const PLATFORMS = values(PLATFORM);
 
 export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButtonProps {
-
+  
     if (!props) {
         throw new Error(`Expected props`);
     }
@@ -219,7 +219,7 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
         content = '',
         customLabel
     } = props;
-   
+
     const { country, lang } = locale;
 
     if (!country || COUNTRIES.indexOf(country) === -1) {
@@ -237,11 +237,9 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
     if (PLATFORMS.indexOf(platform) === -1) {
         throw new Error(`Expected valid platform, got ${ platform || 'undefined' }`);
     }
-
     if (csp && csp.nonce) {
         nonce = csp.nonce;
     }
-
     if (fundingSource) {
         if (SUPPORTED_FUNDING_SOURCES.indexOf(fundingSource) === -1) {
             throw new Error(`Invalid funding source: ${ fundingSource }`);

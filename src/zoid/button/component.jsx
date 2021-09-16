@@ -20,7 +20,7 @@ import { PrerenderedButton } from './prerender';
 
 // $FlowFixMe
 export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> => {
-console.log(1112222)
+
     const AuthButton = create({
         tag:  'paypal-auth-button',
         url: () => `${ getPayPalDomain() }${ __PAYPAL_IDENTITY__.__URI__.__BUTTON__ }`,
@@ -52,7 +52,7 @@ console.log(1112222)
         attributes: {
             iframe: {
                 allowpaymentrequest: 'allowpaymentrequest',
-                scrolling:           'no',
+                scrolling:           'no'
             }
         },
 
@@ -186,15 +186,15 @@ console.log(1112222)
                 value:      getMerchantID
             },
             nonce: {
-                type:     'string',
+                type:       'string',
                 queryParam: true,
-                value:     getCSPNonce
+                value:      getCSPNonce
             },
             csp: {
-                type:     'object',
-                required: false,
+                type:       'object',
+                required:   false,
                 queryParam: true,
-                value:    () => {
+                value:       () => {
                     return {
                         nonce: getCSPNonce()
                     };
