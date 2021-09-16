@@ -56,4 +56,33 @@ export const pageStyle = `
             font-size: 22px;
         }
     }
+
+    //
+
+    @media only screen and (min-width: 800px) {
+        .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
+            height: 25px;
+            font-size: 22px;
+        }
+    }
+    @media only screen and (min-width: 0px) {
+        .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
+            height: 21px;
+            font-size: 12px;
+        }
+    }
+
+    @media only screen and (min-width: 300px) {
+        .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
+            height: 23px;
+            font-size: 16px;
+        }
+    }
+
+    @media only screen and (min-width: 500px) {
+        .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
+            height: 25px;
+            font-size: 18px;
+        }
+    }
 `;

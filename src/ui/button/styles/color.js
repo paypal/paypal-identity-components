@@ -28,7 +28,7 @@ export const buttonColorStyle = `
 
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLUE } {
-        background: #009cde;
+        background: #0070BA;
     }
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLUE }:hover {
@@ -52,7 +52,7 @@ export const buttonColorStyle = `
     }
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER } {
-        background: #eeeeee;
+        background: #bbbbb;
         color: #111;
     }
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER }:hover {
