@@ -13,6 +13,8 @@ export const CLASS = {
 
     TEXT:  ('paypal-auth-button-text' : 'paypal-auth-button-text'),
     SPACE: ('paypal-auth-button-space' : 'paypal-auth-button-space'),
-    
+    CHECKOUTOVERLAY: ('paypal-checkout-overlay': 'paypal-checkout-overlay'),
+    CHECKOUTMODAL: ('paypal-checkout-modal': 'paypal-checkout-modal'),
+    CHECKOUTLOGO: ('paypal-checkout-logo':'paypal-checkout-logo'),
     HIDDEN:  ('hidden' : 'hidden')
 };

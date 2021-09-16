@@ -135,8 +135,8 @@ export type ButtonPropsInputs = {|
   |};
 
 export const DEFAULT_STYLE = {
-    COLOR:  BUTTON_COLOR.BLUE,
-    SHAPE:  BUTTON_SHAPE.RECT
+    COLOR:  BUTTON_COLOR.GOLD,
+    SHAPE:  BUTTON_SHAPE.PILL
 };
 
 export const DEFAULT_PROPS = {
@@ -151,11 +151,6 @@ export const DEFAULT_PROPS = {
 
 // const ALLOWED_COLORS = values(BUTTON_COLOR);
 const ALLOWED_SHAPES = values(BUTTON_SHAPE);
-
-// function getDefaultButtonContent() : ButtonContent {
-//     // $FlowFixMe
-//     return  'Connect with PayPal';
-// }
 
 export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonStyleInputs) : ButtonStyle {
 
@@ -176,21 +171,16 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
     const {
         label,
         color = fundingSource === FUNDING.CREDIT ? BUTTON_COLOR.DARKBLUE : BUTTON_COLOR.BLUE,
-        shape = BUTTON_SHAPE.RECT || BUTTON_SHAPE.PILL,
+        shape = BUTTON_SHAPE.PILL,
         height
     } = style;
-    // if (label && values(BUTTON_LABEL).indexOf(label) === -1) {
-    //     throw new Error(`Invalid label: ${ label }`);
-    // }
 
     if (color && ALLOWED_COLORS.indexOf(color) === -1) {
         throw new Error(`Unexpected style.color for ${ fundingSource } button: ${ color }, expected ${ ALLOWED_COLORS.join(', ') }`);
     }
-
     if (shape && ALLOWED_SHAPES.indexOf(shape) === -1) {
         throw new Error(`Unexpected style.shape for ${ fundingSource } button: ${ shape }, expected ${ ALLOWED_SHAPES.join(', ') }`);
     }
-
     if (height !== undefined) {
         if (typeof height !== 'number') {
             throw new TypeError(`Expected style.height to be a number, got: ${ height }`);
@@ -202,7 +192,6 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
             throw new Error(`Expected style.height to be between ${ minHeight }px and ${ maxHeight }px - got ${ height }px`);
         }
     }
-
     return { label, color, shape, height };
 }
 
@@ -215,7 +204,7 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
     if (!props) {
         throw new Error(`Expected props`);
     }
- 
+   
     let {
         clientID,
         fundingSource,
@@ -226,11 +215,11 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
         sessionID = uniqueID(),
         authButtonSessionID = uniqueID(),
         csp = {},
-        nonce = '',
+        nonce,
         content = '',
         customLabel
     } = props;
-
+   
     const { country, lang } = locale;
 
     if (!country || COUNTRIES.indexOf(country) === -1) {
@@ -258,10 +247,8 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
             throw new Error(`Invalid funding source: ${ fundingSource }`);
         }
     }
-
     // $FlowFixMe
     style = normalizeButtonStyle(props, style);
-
     return { clientID, fundingSource, style, locale, env, platform,
         authButtonSessionID, sessionID, nonce, content, customLabel };
 }

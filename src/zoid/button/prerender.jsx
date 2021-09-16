@@ -21,7 +21,7 @@ type PrerenderedButtonProps = {|
 |};
 
 export function PrerenderedButton({ nonce, onRenderAuth, props } : PrerenderedButtonProps) : ChildType {
-  
+
     const handleClick = () => {
         if (supportsPopups()) {
             const win = assertSameDomain(popup('', {

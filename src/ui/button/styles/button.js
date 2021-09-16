@@ -18,10 +18,12 @@ export const buttonStyle = `
         font-weight: 500;
         font-smoothing: antialiased;
         z-index: 0;
-        width: 100%;
+        min-width: 200px;
+        max-width: 300px;
         height: 100%;
         box-sizing: border-box;
-    }
+
+     }
 
     .${ CLASS.BUTTON } {
         border: 1px solid transparent;
@@ -61,18 +63,21 @@ export const buttonStyle = `
     }
 
     .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
-        height: 55%;
+        height: 25px;
         position: relative;
         top: 50%;
         transform: translateY(-50%);
     }
 
     .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } > * {
-        vertical-align: top;
+        vertical-align: middle;
         height: 100%;
         text-align: left;
     }
     .${ CLASS.SHAPE }-${ BUTTON_SHAPE.PILL }  {
         border-radius: 50px;
+    }
+    .${ CLASS.CHECKOUTOVERLAY } > .${ CLASS.CHECKOUTMODAL } > .${ CLASS.CHECKOUTLOGO } {
+        margin-bottom: 0px; !important;
     }
 `;

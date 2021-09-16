@@ -14,13 +14,13 @@ import { FUNDING } from '@paypal/sdk-constants/src';
 
 import { normalizeButtonStyle, type ButtonProps } from '../../ui/button/props';
 
-import { validateScopes, validateResponseType, validateInputLabel } from './util';
+import { validateScopes, validateResponseType, validateInputLabel, validateRedirectUrl } from './util';
 import { containerTemplate } from './container';
 import { PrerenderedButton } from './prerender';
 
 // $FlowFixMe
 export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> => {
-   
+console.log(1112222)
     const AuthButton = create({
         tag:  'paypal-auth-button',
         url: () => `${ getPayPalDomain() }${ __PAYPAL_IDENTITY__.__URI__.__BUTTON__ }`,
@@ -52,7 +52,7 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
         attributes: {
             iframe: {
                 allowpaymentrequest: 'allowpaymentrequest',
-                scrolling:           'no'
+                scrolling:           'no',
             }
         },
 
@@ -89,7 +89,7 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
             sdkMeta: {
                 type:        'string',
                 queryParam:  true,
-                sendToChild: false,
+                sendToChild: true,
                 value:       getSDKMeta
             },
 
@@ -115,8 +115,8 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
 
             clientID: {
                 type:       'string',
-                value:      getClientID,
-                queryParam: true
+                queryParam:  true,
+                value:      getClientID
             },
 
             partnerAttributionID: {
@@ -185,10 +185,15 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                 queryParam: true,
                 value:      getMerchantID
             },
-
+            nonce: {
+                type:     'string',
+                queryParam: true,
+                value:     getCSPNonce
+            },
             csp: {
                 type:     'object',
                 required: false,
+                queryParam: true,
                 value:    () => {
                     return {
                         nonce: getCSPNonce()
@@ -210,7 +215,13 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                     };
                 }
             },
-
+            returnurl: {
+                type:       'string',
+                queryParam: true,
+                validate:   ({ value }) => {
+                    return validateRedirectUrl(value);
+                }
+            },
             scopes: {
                 type:          'array',
                 required:      true,
@@ -235,7 +246,7 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
             inputLabel: {
                 type:       'string',
                 queryParam: true,
-                required:   true,
+                required:   false,
                 validate:   ({ value }) => {
                     return validateInputLabel(value);
                 }
@@ -244,7 +255,7 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
             billingOptions: {
                 type:          'object',
                 queryParam:    true,
-                required:      true,
+                required:      false,
                 serialization: 'base64'
             },
 

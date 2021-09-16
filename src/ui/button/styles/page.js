@@ -31,21 +31,21 @@ export const pageStyle = `
 
     @media only screen and (min-width: 0px) {
         body {
-            height: 30px;
+            height: 60px;
             font-size: 12px;
         }
     }
 
     @media only screen and (min-width: 300px) {
         body {
-            height: 40px;
+            height: 60px;
             font-size: 16px;
         }
     }
 
     @media only screen and (min-width: 500px) {
         body {
-            height: 50px;
+            height: 60px;
             font-size: 18px;
         }
     }

@@ -33,6 +33,7 @@ type PPCreditLogoProps = {|
 
 // function to render the "PP" abreviated logo
 function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
+   
     const { color = BUTTON_COLOR.BLUE } = style;
     if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color === BUTTON_COLOR.BLACK) {
         return <PPLogo logoColor={ LOGO_COLOR.WHITE } />;
@@ -82,7 +83,7 @@ function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
     const { label } = style;
 
     if (!label) {
-        return;
+        return <Text>Connect with PayPal</Text>;
     }
 
     if (label) {

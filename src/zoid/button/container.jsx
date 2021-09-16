@@ -66,7 +66,9 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
                         position: relative;
                         display: inline-block;
                         width: 100%;
+                        min-height: 35px;
                         min-width: 200px;
+                        max-width: 750px;
                         font-size: 0;
                     }
 
