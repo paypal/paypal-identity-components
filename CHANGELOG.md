@@ -1,3 +1,11 @@
+## <small>5.0.4-alpha1 (2021-09-20)</small>
+
+* Change ([d48aba8](http://github.paypal.com/paypal/paypal-auth/commit/d48aba8))
+* Change ([c1a826a](http://github.paypal.com/paypal/paypal-auth/commit/c1a826a))
+* Update ([267d055](http://github.paypal.com/paypal/paypal-auth/commit/267d055))
+
+
+
 ## <small>5.0.4 (2021-09-20)</small>
 
 * Alpha release prep ([beb4064](http://github.paypal.com/paypal/paypal-auth/commit/beb4064))
