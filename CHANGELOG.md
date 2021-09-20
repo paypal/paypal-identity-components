@@ -1,3 +1,9 @@
+## <small>5.0.4 (2021-09-20)</small>
+
+* Alpha release prep ([beb4064](http://github.paypal.com/paypal/paypal-auth/commit/beb4064))
+
+
+
 ## <small>5.0.3 (2020-03-31)</small>
 
 * Button customization and state param (#2) ([a7b3ca3](http://github.paypal.com/paypal/paypal-auth/commit/a7b3ca3)), closes [#2](http://github.paypal.com/paypal/paypal-auth/issues/2)
