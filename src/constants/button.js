@@ -1,6 +1,6 @@
 /* @flow */
 export const BUTTON_LABEL = {
-    CONNECT:             ('connect' : 'connect')
+    CONNECT:     ('connect' : 'connect')
 };
 
 export const BUTTON_COLOR = {

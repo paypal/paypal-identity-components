@@ -9,7 +9,7 @@ import {
 import { create, type ZoidComponent } from 'zoid/src';
 import { uniqueID, memoize } from 'belter/src';
 import { node, dom } from 'jsx-pragmatic/src';
-import { getRefinedFundingEligibility } from '@paypal/funding-components/src';
+// import { getRefinedFundingEligibility } from '@paypal/funding-components/src';
 import { FUNDING } from '@paypal/sdk-constants/src';
 
 import { normalizeButtonStyle, type ButtonProps } from '../../ui/button/props';
@@ -17,6 +17,8 @@ import { normalizeButtonStyle, type ButtonProps } from '../../ui/button/props';
 import { validateScopes, validateResponseType, validateInputLabel, validateRedirectUrl } from './util';
 import { containerTemplate } from './container';
 import { PrerenderedButton } from './prerender';
+
+export type AuthButtonComponent = ZoidComponent<ButtonProps>;
 
 // $FlowFixMe
 export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> => {
@@ -267,13 +269,14 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
         }
     });
 
-    const ButtonWrapper = (props = {}) => {
+    const ButtonWrapper = (props) => {
         const instance = AuthButton(props);
-        instance.isEligible = () => {
-            const { fundingSource = FUNDING.PAYPAL } = props;
-            const fundingEligibility = getRefinedFundingEligibility();
-            return Boolean(fundingEligibility[fundingSource] && fundingEligibility[fundingSource].eligible);
-        };
+        // instance.isEligible = () => {
+        //     // const { fundingSource = FUNDING.PAYPAL } = props;
+        //     // const fundingEligibility = getRefinedFundingEligibility();
+        //     return Boolean(fundingEligibility[fundingSource] && fundingEligibility[fundingSource].eligible);
+        // };
+        // console.log('instance');
 
         return instance;
     };

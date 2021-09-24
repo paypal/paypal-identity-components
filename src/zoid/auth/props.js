@@ -25,5 +25,5 @@ export type AuthPropsType = {|
     onCancel? : (OnCancelData, OnCancelActions) => ?ZalgoPromise<void>,
     env : $Values<typeof ENV>,
     locale : LocaleType,
-    nonce? : string
+    nonce : string
 |};

@@ -1,6 +1,8 @@
 /* @flow */
 /* eslint import/no-nodejs-modules: off, import/no-default-export: off */
 
+
+import type { WebpackConfig } from 'grumbler-scripts/config/types';
 import { getWebpackConfig } from 'grumbler-scripts/config/webpack.config';
 
 import { testGlobals } from './test/globals';
@@ -8,7 +10,7 @@ import globals from './globals';
 
 const MODULE_NAME = 'paypal';
 
-export const WEBPACK_CONFIG_TEST = getWebpackConfig({
+export const WEBPACK_CONFIG_TEST : WebpackConfig = getWebpackConfig({
     entry:         './test/paypal.js',
     libraryTarget: 'window',
 
@@ -24,7 +26,7 @@ export const WEBPACK_CONFIG_TEST = getWebpackConfig({
     }
 });
 
-export const WEBPACK_CONFIG_BUTTON_RENDER = getWebpackConfig({
+export const WEBPACK_CONFIG_BUTTON_RENDER : WebpackConfig = getWebpackConfig({
     context:       __dirname,
     entry:         './src/ui/button',
     filename:      'button.js',

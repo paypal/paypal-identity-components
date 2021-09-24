@@ -16,6 +16,7 @@ import {  validateResponseType  } from '../button/util';
 import { type AuthPropsType } from './props';
 import { DEFAULT_POPUP_SIZE } from './config';
 
+export type AuthComponent = ZoidComponent<AuthPropsType>;
 
 export function getAuthComponent() : ZoidComponent<AuthPropsType> {
     return inlineMemoize(getAuthComponent, () => {
@@ -46,8 +47,8 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
             },
 
 
-            containerTemplate: ({ context, close, focus, doc, event, frame, prerenderFrame }) => {
-
+            containerTemplate: ({ context, close, focus, doc, event, frame, prerenderFrame, props }) => {
+                const { nonce } = props;
                 return (
 
                     <Overlay
@@ -58,6 +59,7 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                         frame={ frame }
                         prerenderFrame={ prerenderFrame }
                         content={ {} }
+                        nonce={ nonce }
                     />
                 ).render(dom({ doc }));
             },

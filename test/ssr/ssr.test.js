@@ -2,7 +2,7 @@
 /* eslint no-restricted-globals: 0, promise/no-native: 0 */
 
 import { getWebpackConfig } from 'grumbler-scripts/config/webpack.config';
-import { html, type ElementNode } from 'jsx-pragmatic';
+import { html, ElementNode } from 'jsx-pragmatic';
 
 import { webpackCompileToString } from '../screenshot/lib/compile';
 
@@ -10,7 +10,7 @@ jest.setTimeout(120000);
 
 const cache = {};
 
-async function getButtonScript() : Promise<{| AuthButton : (Object) => ElementNode, DEFAULT_PROPS : Object |}> {
+async function getButtonScript() : Promise<{| AuthButton : (Object) => typeof ElementNode, DEFAULT_PROPS : Object |}> {
 
     const config = {
         entry:         './src/ui/button',
@@ -32,9 +32,9 @@ async function getButtonScript() : Promise<{| AuthButton : (Object) => ElementNo
         throw new TypeError(`Expected componentTemplate to be a function`);
     }
 
-    // eslint-disable-next-line require-atomic-updates
-    cache[cacheKey] = exports;
-
+    // $FlowFixMe
+    cache[cacheKey] = exports; // eslint-disable-line require-atomic-updates
+    // $FlowFixMe
     return exports;
 }
 

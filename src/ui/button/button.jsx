@@ -79,7 +79,7 @@ type LabelProps = {|
 
 function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
     const { label } = style;
-    const { text } = content;
+    const  text  = content;
     if (!label) {
         return <Text>Log in with PayPal</Text>;
     }

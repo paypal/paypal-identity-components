@@ -47,7 +47,7 @@ export type BillingOptions = {|
 |};
 
 export type ButtonStyle = {|
-    label : ?$Values<typeof BUTTON_LABEL>,
+    label : $Values<typeof BUTTON_LABEL> | void,
     color : $Values<typeof BUTTON_COLOR>,
     shape : $Values<typeof BUTTON_SHAPE>,
     height? : number
@@ -109,7 +109,10 @@ export type ButtonProps = {|
     responseType : string,
     billingOptions : BillingOptions,
     state? : string,
-    connectLabel? : string
+    connectLabel? : string,
+    cspNonce? : {|
+        nonce? : string
+    |}
    |};
 
 export type ButtonPropsInputs = {|
@@ -118,13 +121,13 @@ export type ButtonPropsInputs = {|
     style? : ButtonStyleInputs | void,
     locale? : $PropertyType<ButtonProps, 'locale'> | void,
     env? : $PropertyType<ButtonProps, 'env'> | void,
-    meta? : $PropertyType<ButtonProps, 'meta'> | void,
+    // meta? : $PropertyType<ButtonProps, 'meta'> | void,
     stage? : $PropertyType<ButtonProps, 'stage'> | void,
     stageUrl? : $PropertyType<ButtonProps, 'stageUrl'> | void,
     platform? : $PropertyType<ButtonProps, 'platform'> | void,
     authButtonSessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     sessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
-    nonce? : string,
+    nonce : string,
     
     csp? : {|
         nonce? : string

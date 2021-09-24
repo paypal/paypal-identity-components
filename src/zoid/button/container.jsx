@@ -59,7 +59,7 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
     };
 
     const element = (
-        <div id={ uid } onRender={ setupAutoResize } class={ `${ tag } ${ tag }-context-${ context } ${ tag }-label-${ label }` }>
+        <div id={ uid } onRender={ setupAutoResize } class={ `${ tag } ${ tag }-context-${ context } ${ tag }-label-${ label || 'unknown' }` }>
             <style>
                 {`
                     #${ uid } {

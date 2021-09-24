@@ -52,7 +52,7 @@ export const buttonColorStyle = `
     }
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER } {
-        background: #bbbbb;
+        background: #eeeeee;
         color: #111;
     }
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER }:hover {
