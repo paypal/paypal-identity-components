@@ -25,11 +25,11 @@ export function validateResponseType(responseType : string) {
 }
 
 export function validateInputLabel(inputLabel : string) {
-    const VALUE_TYPES : $ReadOnlyArray<string> = [ 'connect', 'logIn', 'signUp', 'continue' ];
+    const VALUE_TYPES : $ReadOnlyArray<string> = [ 'connect', 'login', 'signup', 'continue' ];
     // if (inputLabel === undefined || inputLabel.length === 0) {
     //     // throw new Error(`Expected props.connectLabel to be set`);
     // }
     if (VALUE_TYPES.indexOf(inputLabel) === -1) {
-        throw new Error(`Invalid value for props.connectLabel.`);
+        throw new Error(`Invalid value for props.label.`);
     }
 }
