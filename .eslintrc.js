@@ -30,6 +30,5 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/forbid-component-props': 'off',
         'react/no-unused-prop-types': 'off'
-          
     }
 };

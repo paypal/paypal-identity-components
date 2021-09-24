@@ -7,7 +7,7 @@ import { BUTTON_LABEL, BUTTON_COLOR, BUTTON_SHAPE } from '../../src/constants';
 
 const SUPPORTED_FUNDING_SOURCES : $ReadOnlyArray<$Values<typeof FUNDING>> = [
     FUNDING.PAYPAL,
-    FUNDING.CREDIT
+    FUNDING.PAYPAL
 ];
 
 const RESPONSIVE_WIDTHS = [ 144, 222, 465, 670 ];
@@ -37,6 +37,7 @@ const DEFAULT_OAUTH_PROPS = {
     scopes:          [ 'email' ],
     responseType:   'code',
     inputLabel: 'connect',
+    returnurl:  'https://google.com',
     billingOptions: {
         type:        'MERCHANT',
         productCode:    'PRODUCT_CODE',

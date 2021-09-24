@@ -46,7 +46,8 @@ test(`Button should render with ssr, with minimal options`, async () => {
         locale:              { country: 'US', lang: 'en' },
         platform:            'desktop',
         sessionID:           'xyz',
-        authButtonSessionID: 'abc'
+        authButtonSessionID: 'abc',
+        style :              { color : 'blue', shape: 'pill' }
     }).render(html());
 
     if (!buttonHTML || typeof buttonHTML !== 'string') {

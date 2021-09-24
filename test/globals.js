@@ -21,5 +21,7 @@ export const testGlobals = {
     __VERSION__:        '1.0.55',
     __NAMESPACE__:      'paypal',
     __COMPONENTS__:     [ 'button' ],
-    __CORRELATION_ID__: 'abc123'
+    __CORRELATION_ID__: 'abc123',
+    __PAYPAL_DOMAIN__:     'mock://www.paypal.com',
+    __PAYPAL_API_DOMAIN__: 'mock://msmaster.qa.paypal.com'
 };

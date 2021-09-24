@@ -60,9 +60,6 @@ export type ButtonStyleInputs = {|
     height? : $PropertyType<ButtonStyle, 'height'> | void
 |};
 
-export type ButtonContent = {|
-    connectLabel? : string
-|};
 
 export type RenderButtonProps = {|
     style : ButtonStyle,
@@ -76,7 +73,6 @@ export type RenderButtonProps = {|
     sessionID : string,
     authButtonSessionID : string,
     nonce : string,
-    connectLabel? : string,
     content : string,
     customLabel : string
 |};
@@ -109,10 +105,10 @@ export type ButtonProps = {|
     responseType : string,
     billingOptions : BillingOptions,
     state? : string,
-    connectLabel? : string,
     cspNonce? : {|
         nonce? : string
-    |}
+    |},
+    returnurl? : string
    |};
 
 export type ButtonPropsInputs = {|
