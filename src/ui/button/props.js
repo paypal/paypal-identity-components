@@ -27,7 +27,7 @@ export type OnCancelActions = {|
 
 |};
 
-export type OnCancel = (OnCancelData, OnCancelActions) => ZalgoPromise<void> | void;
+export type OnCancel = (data : OnCancelData, actions : OnCancelActions) => ZalgoPromise<void> | void;
 
 export type OnClickData = {|
 

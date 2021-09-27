@@ -160,8 +160,8 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                 // },
 
                 onApprove: {
-                    type: 'function'
-                    // alias: 'onAuthorize'
+                    type: 'function',
+                    required:   false
                 },
 
                 accessToken: {
