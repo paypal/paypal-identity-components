@@ -1,3 +1,8 @@
+## <small>5.0.4-alpha4 (2021-09-27)</small>
+
+
+
+
 ## <small>5.0.4-alpha3 (2021-09-27)</small>
 
 * [Config Change]Button route url update (#8) ([99ac4ec](https://github.paypal.com/paypal/paypal-auth/commit/99ac4ec)), closes [#8](https://github.paypal.com/paypal/paypal-auth/issues/8)

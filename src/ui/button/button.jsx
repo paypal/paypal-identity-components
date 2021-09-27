@@ -21,7 +21,8 @@ export function validateButtonProps(props : ButtonProps) {
 }
 
 type LogoProps = {|
-    style : ButtonStyle
+    style : ButtonStyle,
+    locale : LocaleType
 |};
 
 // type PPCreditLogoProps = {|
@@ -142,10 +143,9 @@ export function AuthButton(props : ButtonProps) : ElementNode {
                     
                 { customLabel &&
                     <div class={ CLASS.BUTTON_LABEL }>
-                        <PPSymbol style={ style } />
-                        {
-                            <Label style={ style } content={ customLabel } />
-                        }
+                        <PPSymbol style={ style } /> 
+                        <Label style={ style } content={ customLabel } />
+                        
                     </div>}
             </div>
         </div>
