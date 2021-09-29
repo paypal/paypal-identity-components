@@ -1,3 +1,9 @@
+## <small>5.0.4-alpha5 (2021-09-29)</small>
+
+* logo issue fix ([4eda401](https://github.paypal.com/paypal/paypal-auth/commit/4eda401))
+
+
+
 ## <small>5.0.4-alpha4 (2021-09-27)</small>
 
 
