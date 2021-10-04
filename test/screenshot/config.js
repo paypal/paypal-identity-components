@@ -21,8 +21,8 @@ type ButtonConfig = {
     |},
     button? : {
         scopes : $ReadOnlyArray<string>,
-        fundingSource? : $Values<typeof FUNDING>,
         locale? : string,
+        responseType : string,
         style? : {
             color? : string,
             shape? : string,

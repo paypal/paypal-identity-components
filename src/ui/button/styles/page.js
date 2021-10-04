@@ -31,28 +31,24 @@ export const pageStyle = `
 
     @media only screen and (min-width: 0px) {
         body {
-            height: 55px;
-            font-size: 12px;
+           font-size: 12px;
         }
     }
 
     @media only screen and (min-width: 300px) {
         body {
-            height: 55px;
             font-size: 16px;
         }
     }
 
     @media only screen and (min-width: 500px) {
         body {
-            height: 55px;
             font-size: 18px;
         }
     }
 
     @media only screen and (min-width: 800px) {
         body {
-            height: 55px;
             font-size: 22px;
         }
     }

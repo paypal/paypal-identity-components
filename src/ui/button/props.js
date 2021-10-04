@@ -74,7 +74,8 @@ export type RenderButtonProps = {|
     authButtonSessionID : string,
     nonce : string,
     content : string,
-    customLabel : string
+    customLabel : string,
+    responseType : string
 |};
 
 export type PrerenderDetails = {|
@@ -91,7 +92,7 @@ export type ButtonProps = {|
     onApprove : OnApprove,
     onClick : OnClick,
     getPrerenderDetails : GetPrerenderDetails,
-    style : ButtonStyle,
+    style : ButtonStyleInputs,
     locale : LocaleType,
     env : $Values<typeof ENV>,
     stage? : string,
@@ -124,7 +125,7 @@ export type ButtonPropsInputs = {|
     authButtonSessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     sessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     nonce : string,
-    
+    responseType : string,
     csp? : {|
         nonce? : string
     |},
@@ -216,6 +217,7 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
         csp = {},
         nonce,
         content = '',
+        responseType,
         customLabel
     } = props;
 
@@ -246,6 +248,7 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
     }
     // $FlowFixMe
     style = normalizeButtonStyle(props, style);
+    console.log('style:::',style);
     return { clientID, fundingSource, style, locale, env, platform,
-        authButtonSessionID, sessionID, nonce, content, customLabel };
+        authButtonSessionID, sessionID, nonce, content, customLabel, responseType };
 }

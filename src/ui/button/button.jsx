@@ -8,6 +8,7 @@ import { noop } from 'belter/src';
 import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
 import { Text } from '../text';
 
+
 import { normalizeButtonProps, type ButtonStyle, type ButtonPropsInputs } from './props';
 import { Style } from './style';
 
@@ -21,8 +22,7 @@ export function validateButtonProps(props : ButtonProps) {
 }
 
 type LogoProps = {|
-    style : ButtonStyle,
-    locale : LocaleType
+    style : ButtonStyle
 |};
 
 // type PPCreditLogoProps = {|
@@ -96,6 +96,7 @@ export function AuthButton(props : ButtonProps) : ElementNode {
     const { onClick = noop } = props;
     const { fundingSource, style,  env,
         nonce, customLabel } = normalizeButtonProps(props);
+        console.log('style:::',style,customLabel,nonce);
     const { shape, color } = style;
     const clickHandler = (event, opts) => {
         event.preventDefault();
@@ -143,9 +144,8 @@ export function AuthButton(props : ButtonProps) : ElementNode {
                     
                 { customLabel &&
                     <div class={ CLASS.BUTTON_LABEL }>
-                        <PPSymbol style={ style } /> 
+                        <PPSymbol style={ style } />
                         <Label style={ style } content={ customLabel } />
-                        
                     </div>}
             </div>
         </div>

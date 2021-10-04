@@ -6,6 +6,8 @@ export function validateScopes(scopes : $ReadOnlyArray<string>) {
     if (scopes.includes('')) {
         throw new Error(`Expected props.scopes element to be non-empty`);
     }
+
+    scopes.join(' ');
 }
 export function validateRedirectUrl(returnurl : string) {
     if (returnurl === undefined || returnurl.length === 0) {

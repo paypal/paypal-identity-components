@@ -11,7 +11,7 @@ import { create, CONTEXT, type ZoidComponent } from 'zoid/src';
 import { isDevice, supportsPopups, inlineMemoize } from 'belter/src';
 import { Overlay, SpinnerPage } from '@paypal/common-components/src';
 
-// import {  validateResponseType  } from '../button/util';
+import {  validateResponseType  } from '../button/util';
 
 import { type AuthPropsType } from './props';
 import { DEFAULT_POPUP_SIZE } from './config';
@@ -118,14 +118,14 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                 },
 
 
-                // responseType: {
-                //     type:           'string',
-                //     queryParam:     true,
-                //     required:       true,
-                //     validate:       ({ value }) => {
-                //         return validateResponseType(value);
-                //     }
-                // },
+                responseType: {
+                    type:           'string',
+                    queryParam:     true,
+                    required:       true,
+                    validate:       ({ value }) => {
+                        return validateResponseType(value);
+                    }
+                },
                 // csp:{
                 //     type:     'object',
                 //     required: false,
@@ -160,7 +160,7 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                 // },
 
                 onApprove: {
-                    type: 'function',
+                    type:      'function',
                     required:   false
                 },
 
@@ -179,6 +179,7 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                     default: () =>  (window.__test__ || { action: 'auth' })
                 }
             },
+            
 
             dimensions: isDevice()
                 ? { width: '100%', height: `${ DEFAULT_POPUP_SIZE.HEIGHT }px` }

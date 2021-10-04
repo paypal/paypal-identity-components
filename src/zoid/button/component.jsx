@@ -254,12 +254,12 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                 }
             },
 
-            billingOptions: {
-                type:          'object',
-                queryParam:    true,
-                required:      false,
-                serialization: 'base64'
-            },
+            // billingOptions: {
+            //     type:          'object',
+            //     queryParam:    true,
+            //     required:      false,
+            //     serialization: 'base64'
+            // },
 
             state: {
                 type:       'string',
