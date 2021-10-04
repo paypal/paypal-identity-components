@@ -1,3 +1,9 @@
+## <small>5.0.4-alpha5.1 (2021-10-04)</small>
+
+* review comments fix_latest ([ae6c984](https://github.paypal.com/paypal/paypal-auth/commit/ae6c984))
+
+
+
 ## <small>5.0.3 (2020-03-31)</small>
 
 * Button customization and state param (#2) ([a7b3ca3](http://github.paypal.com/paypal/paypal-auth/commit/a7b3ca3)), closes [#2](http://github.paypal.com/paypal/paypal-auth/issues/2)
