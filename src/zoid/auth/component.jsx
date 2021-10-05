@@ -41,7 +41,7 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
             prerenderTemplate: ({ doc, props }) => {
                 return (
                     <SpinnerPage
-                        nonce={ props.nonce } style
+                        nonce={ props.nonce }
                     />
                 ).render(dom({ doc }));
             },

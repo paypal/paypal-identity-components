@@ -16,5 +16,6 @@ export const CLASS = {
     CHECKOUTOVERLAY: ('paypal-checkout-overlay' : 'paypal-checkout-overlay'),
     CHECKOUTMODAL:   ('paypal-checkout-modal' : 'paypal-checkout-modal'),
     CHECKOUTLOGO:    ('paypal-checkout-logo' : 'paypal-checkout-logo'),
-    HIDDEN:          ('hidden' : 'hidden')
+    HIDDEN:          ('hidden' : 'hidden'),
+    SPINNER_COLOR:   ('paypal-auth-button-spinner' : 'paypal-auth-button-spinner')
 };

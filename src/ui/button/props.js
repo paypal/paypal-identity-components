@@ -38,7 +38,7 @@ export type OnClickActions = {|
 |};
 
 export type OnClick = (OnClickData, OnClickActions) => void;
-
+    
 export type BillingOptions = {|
     type? : string | void,
     productCode? : string | void,
@@ -111,7 +111,7 @@ export type ButtonProps = {|
     |},
     returnurl? : string
    |};
-
+   
 export type ButtonPropsInputs = {|
     clientID : string,
     fundingSource? : $Values<typeof FUNDING>,
@@ -248,7 +248,6 @@ export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButton
     }
     // $FlowFixMe
     style = normalizeButtonStyle(props, style);
-    console.log('style:::',style);
     return { clientID, fundingSource, style, locale, env, platform,
         authButtonSessionID, sessionID, nonce, content, customLabel, responseType };
 }

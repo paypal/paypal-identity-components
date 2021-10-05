@@ -89,7 +89,7 @@ for (const config of buttonConfigs) {
             
             const renderPromise = window.paypal.AuthButton(options.button || {}).render(container);
             
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 300));
 
             const frame = container.querySelector('iframe');
 
@@ -106,8 +106,8 @@ for (const config of buttonConfigs) {
             return {
                 x:      rect.left,
                 y:      rect.top,
-                width:  rect.width || 90,
-                height: rect.height || 60
+                width:  rect.width,
+                height: rect.height
             };
 
         }, buttonConfig);

@@ -96,7 +96,6 @@ export function AuthButton(props : ButtonProps) : ElementNode {
     const { onClick = noop } = props;
     const { fundingSource, style,  env,
         nonce, customLabel } = normalizeButtonProps(props);
-        console.log('style:::',style,customLabel,nonce);
     const { shape, color } = style;
     const clickHandler = (event, opts) => {
         event.preventDefault();

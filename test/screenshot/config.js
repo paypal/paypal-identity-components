@@ -36,12 +36,11 @@ export const buttonConfigs : Array<ButtonConfig> = [];
 const DEFAULT_OAUTH_PROPS = {
     scopes:          [ 'email' ],
     responseType:   'code',
-    inputLabel: 'connect',
-    returnurl:  'https://google.com',
-    billingOptions: {
-        type:        'MERCHANT',
-        productCode:    'PRODUCT_CODE',
-        cancelUrl:   'www.paypal.com'
+    style: {
+        color: 'blue',
+        height: 35,
+        label: 'connect',
+        shape: 'pill'
     }
 };
 

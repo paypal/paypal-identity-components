@@ -28,6 +28,9 @@ export const pageStyle = `
         position: absolute;
         visibility: hidden;
     }
+    .${ CLASS.SPINNER_COLOR } {
+        background: white;
+    }
 
     @media only screen and (min-width: 0px) {
         body {

@@ -58,8 +58,6 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
         });
     };
 
-    console.log('setupAutoResize:::',setupAutoResize,tag,uid,context,label);
-
     const element = (
         <div id={ uid } onRender={ setupAutoResize } class={ `${ tag } ${ tag }-context-${ context } ${ tag }-label-${ label || 'unknown' }` }>
             <style>

@@ -13,8 +13,9 @@ import { node, dom } from 'jsx-pragmatic/src';
 import { FUNDING } from '@paypal/sdk-constants/src';
 
 import { normalizeButtonStyle, type ButtonProps } from '../../ui/button/props';
+import { getRedirectUrl } from '../auth/config';
 
-import { validateScopes, validateResponseType, validateInputLabel, validateRedirectUrl } from './util';
+import { validateScopes, validateResponseType, validateInputLabel } from './util';
 import { containerTemplate } from './container';
 import { PrerenderedButton } from './prerender';
 
@@ -220,9 +221,7 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
             returnurl: {
                 type:       'string',
                 queryParam: true,
-                validate:   ({ value }) => {
-                    return validateRedirectUrl(value);
-                }
+                value:      () => getRedirectUrl()
             },
             scopes: {
                 type:          'array',
