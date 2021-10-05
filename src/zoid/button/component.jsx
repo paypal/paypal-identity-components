@@ -105,7 +105,12 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                 type:     'function',
                 required: false
             },
-
+            
+            onError: {
+                type:       'function',
+                required:   false
+            },
+            
             onClick: {
                 type:     'function',
                 required: false
@@ -218,6 +223,7 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                     };
                 }
             },
+            // fetch this value from config
             returnurl: {
                 type:       'string',
                 queryParam: true,
@@ -270,13 +276,6 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
 
     const ButtonWrapper = (props) => {
         const instance = AuthButton(props);
-        // instance.isEligible = () => {
-        //     // const { fundingSource = FUNDING.PAYPAL } = props;
-        //     // const fundingEligibility = getRefinedFundingEligibility();
-        //     return Boolean(fundingEligibility[fundingSource] && fundingEligibility[fundingSource].eligible);
-        // };
-        // console.log('instance');
-
         return instance;
     };
 

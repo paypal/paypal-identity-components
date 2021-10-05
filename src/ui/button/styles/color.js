@@ -57,11 +57,11 @@ export const buttonColorStyle = `
     }
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER }:hover {
         filter: brightness(1.9);
-        background: #00000020;
+        background: #000020;
     }
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER }:focus {
         outline: none;
-        background: #00000020;
+        background: #000020;
         box-shadow: 0px 0px 1px 3px #0c67ff inset;
     }
 `;

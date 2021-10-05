@@ -32,6 +32,21 @@ export const pageStyle = `
         background: white;
     }
 
+    @media screen and (max-width: 400px) {
+        .${ CLASS.BUTTON_LABEL } {
+          width: 100%;
+        }
+      }
+  
+      /* Media query for desktop viewport */
+      @media screen and (min-width: 400px) {
+        .${ CLASS.BUTTON_LABEL } {
+          max-width: 250px;
+          font-size: 14px;
+          margin-top: 27px;
+        }
+      }
+
     @media only screen and (min-width: 0px) {
         body {
            font-size: 12px;
@@ -55,8 +70,6 @@ export const pageStyle = `
             font-size: 22px;
         }
     }
-
-    //
 
     @media only screen and (min-width: 800px) {
         .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {

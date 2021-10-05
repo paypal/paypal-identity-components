@@ -38,8 +38,6 @@ const DEFAULT_OAUTH_PROPS = {
     responseType:   'code',
     style: {
         color: 'blue',
-        height: 35,
-        label: 'connect',
         shape: 'pill'
     }
 };
@@ -59,7 +57,7 @@ for (const label of [ BUTTON_LABEL.CONNECT ]) {
     buttonConfigs.push({
         button: {
             style: {
-                // color: 'blue',
+                // default  color: 'blue',
                 label
             },
             ...DEFAULT_OAUTH_PROPS

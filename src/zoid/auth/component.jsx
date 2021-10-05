@@ -5,13 +5,13 @@
 import { node, dom } from 'jsx-pragmatic/src';
 import {
     getPayPalDomainRegex, getLogger,  getEnv, getClientID,
-    getSDKMeta, getCSPNonce,   getPayPalDomain, getSessionID
+    getSDKMeta, getCSPNonce, getPayPalDomain, getSessionID
 } from '@paypal/sdk-client/src';
 import { create, CONTEXT, type ZoidComponent } from 'zoid/src';
 import { isDevice, supportsPopups, inlineMemoize } from 'belter/src';
 import { Overlay, SpinnerPage } from '@paypal/common-components/src';
 
-import {  validateResponseType  } from '../button/util';
+import { validateResponseType } from '../button/util';
 
 import { type AuthPropsType } from './props';
 import { DEFAULT_POPUP_SIZE } from './config';
@@ -72,11 +72,11 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                     required:   false
                 },
 
-                client_id: {
+                clientID: {
                     type:               'string',
-                    queryParam:         true,
+                    queryParam:         'client_id',
                     value:      () =>   getClientID(),
-                    required:           false
+                    required:           true
                 },
 
                 sessionID: {
@@ -126,19 +126,14 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                         return validateResponseType(value);
                     }
                 },
+                // we will use this parameters in te next release when we have locale as query parameter
                 // csp:{
                 //     type:     'object',
                 //     required: false,
                 //     queryParam: true,
                 //     value: getCSPNonce()
                 // },
-                // buyerCountry: {
-                //     type:       'string',
-                //     queryParam: true,
-                //     required:   false,
-                //     default:    getBuyerCountry
-                // },
-
+              
                 // locale: {
                 //     type:          'object',
                 //     queryParam:    'locale.x',
@@ -147,25 +142,8 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                 //     value:         getLocale
                 // },
 
-                // version: {
-                //     type:       'string',
-                //     queryParam: true,
-                //     value:      getVersion
-                // },
-
-                // fundingSource: {
-                //     type:       'string',
-                //     queryParam: true,
-                //     default:    () => FUNDING.PAYPAL
-                // },
-
                 onApprove: {
                     type:      'function',
-                    required:   false
-                },
-
-                accessToken: {
-                    type:       'string',
                     required:   false
                 },
 
@@ -174,9 +152,14 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                     required:   false
                 },
 
+                onError: {
+                    type:       'function',
+                    required:   false
+                },
+
                 test: {
-                    type:           'object',
-                    default: () =>  (window.__test__ || { action: 'auth' })
+                    type:          'object',
+                    default: () => (window.__test__ || { action: 'auth' })
                 }
             },
             

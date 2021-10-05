@@ -25,11 +25,6 @@ type LogoProps = {|
     style : ButtonStyle
 |};
 
-// type PPCreditLogoProps = {|
-//     style : ButtonStyle,
-//     locale : LocaleType
-// |};
-
 // function to render the "PP" abreviated logo
 function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
    
@@ -45,33 +40,6 @@ function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
     throw new Error(`Unsupported color (PP logo): ${ color }`);
 
 }
-// Have to revist once we introduce the other form of buttons.
-// function to render the "CREDIT" logo
-// function PPCreditLogo({ style, locale } : PPCreditLogoProps) : ComponentNode<LogoProps> {
-//     const { color } = style;
-
-//     if (color === BUTTON_COLOR.DARKBLUE) {
-//         return <CreditLogo logoColor={ LOGO_COLOR.WHITE } locale={ locale } />;
-//     }
-
-//     throw new Error(`Unsupported color (Credit logo): ${ color }`);
-    
-// }
-
-// function to render the "PayPal" brand logo
-// function Logo({ style } : LogoProps) : ComponentNode<LogoProps> {
-//     const { color } = style;
-
-//     if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color === BUTTON_COLOR.BLACK) {
-//         return <PayPalLogo logoColor={ LOGO_COLOR.WHITE } />;
-//     }
-
-//     if (color === BUTTON_COLOR.SILVER || color === BUTTON_COLOR.WHITE || color === BUTTON_COLOR.GOLD) {
-//         return <PayPalLogo logoColor={ LOGO_COLOR.BLUE } />;
-//     }
-
-//     throw new Error(`Unsupported color (Paypal logo): ${ color }`);
-// }
 
 type LabelProps = {|
     style : ButtonStyle,
@@ -80,7 +48,7 @@ type LabelProps = {|
 
 function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
     const { label } = style;
-    const  text  = content;
+    const text  = content;
     if (!label) {
         return <Text>Log in with PayPal</Text>;
     }

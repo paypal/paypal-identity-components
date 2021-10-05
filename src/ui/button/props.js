@@ -38,7 +38,17 @@ export type OnClickActions = {|
 |};
 
 export type OnClick = (OnClickData, OnClickActions) => void;
-    
+
+export type OnErrorData = {|
+
+|};
+
+export type OnErrorActions = {|
+
+|};
+
+export type OnError = (data : OnErrorData, actions : OnErrorActions) => ZalgoPromise<void> | void;
+
 export type BillingOptions = {|
     type? : string | void,
     productCode? : string | void,
@@ -91,6 +101,7 @@ export type ButtonProps = {|
     onCancel : OnCancel,
     onApprove : OnApprove,
     onClick : OnClick,
+    onError : OnError,
     getPrerenderDetails : GetPrerenderDetails,
     style : ButtonStyleInputs,
     locale : LocaleType,
@@ -108,8 +119,7 @@ export type ButtonProps = {|
     state? : string,
     cspNonce? : {|
         nonce? : string
-    |},
-    returnurl? : string
+    |}
    |};
    
 export type ButtonPropsInputs = {|
@@ -118,7 +128,6 @@ export type ButtonPropsInputs = {|
     style? : ButtonStyleInputs | void,
     locale? : $PropertyType<ButtonProps, 'locale'> | void,
     env? : $PropertyType<ButtonProps, 'env'> | void,
-    // meta? : $PropertyType<ButtonProps, 'meta'> | void,
     stage? : $PropertyType<ButtonProps, 'stage'> | void,
     stageUrl? : $PropertyType<ButtonProps, 'stageUrl'> | void,
     platform? : $PropertyType<ButtonProps, 'platform'> | void,
@@ -135,7 +144,7 @@ export type ButtonPropsInputs = {|
   |};
 
 export const DEFAULT_STYLE = {
-    COLOR:  BUTTON_COLOR.GOLD,
+    COLOR:  BUTTON_COLOR.BLUE,
     SHAPE:  BUTTON_SHAPE.PILL
 };
 
@@ -199,12 +208,10 @@ const COUNTRIES = values(COUNTRY);
 const ENVS = values(ENV);
 const PLATFORMS = values(PLATFORM);
 
-export function normalizeButtonProps(props : ? ButtonPropsInputs) : RenderButtonProps {
-  
+export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonProps {
     if (!props) {
         throw new Error(`Expected props`);
     }
-   
     let {
         clientID,
         fundingSource,
