@@ -1,3 +1,9 @@
+## <small>5.0.7 (2021-10-06)</small>
+
+* Remove eslint (#15) ([8378649](https://github.paypal.com/paypal/paypal-auth/commit/8378649)), closes [#15](https://github.paypal.com/paypal/paypal-auth/issues/15)
+
+
+
 ## <small>5.0.6 (2021-10-06)</small>
 
 * Use https with npm registry ([8fc7682](https://github.paypal.com/paypal/paypal-auth/commit/8fc7682))
