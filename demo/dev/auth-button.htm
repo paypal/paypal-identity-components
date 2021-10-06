@@ -20,6 +20,7 @@
         document.querySelectorAll('[data-funding-source]').forEach(button => {
             button.addEventListener('click', () => {
                 const instance = paypal.Auth({
+                    ...xprops,
                     onApprove: () => {
                         console.log('Approved');
                         instance.close();
