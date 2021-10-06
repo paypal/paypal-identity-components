@@ -121,7 +121,7 @@ export type ButtonProps = {|
         nonce? : string
     |}
    |};
-   
+
 export type ButtonPropsInputs = {|
     clientID : string,
     fundingSource? : $Values<typeof FUNDING>,
@@ -162,7 +162,7 @@ export const DEFAULT_PROPS = {
 const ALLOWED_SHAPES = values(BUTTON_SHAPE);
 
 export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonStyleInputs) : ButtonStyle {
- 
+
     if (!style) {
         throw new Error(`Expected props.style to be set`);
     }
@@ -176,7 +176,7 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
     if (fundingSource === FUNDING.CREDIT) {
         ALLOWED_COLORS = [ BUTTON_COLOR.DARKBLUE ];
     }
-    
+
     const {
         label,
         color = fundingSource === FUNDING.CREDIT ? BUTTON_COLOR.DARKBLUE : BUTTON_COLOR.BLUE,
@@ -194,7 +194,7 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
         if (typeof height !== 'number') {
             throw new TypeError(`Expected style.height to be a number, got: ${ height }`);
         }
-        
+
         const [ minHeight, maxHeight ] = [ 35, 50 ];
 
         if (height < minHeight || height > maxHeight) {
