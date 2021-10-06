@@ -1,3 +1,9 @@
+## <small>5.0.6 (2021-10-06)</small>
+
+* Use https with npm registry ([8fc7682](https://github.paypal.com/paypal/paypal-auth/commit/8fc7682))
+
+
+
 ## <small>5.0.5 (2021-10-06)</small>
 
 * [Config Change]Button route url update (#8) ([99ac4ec](https://github.paypal.com/paypal/paypal-auth/commit/99ac4ec)), closes [#8](https://github.paypal.com/paypal/paypal-auth/issues/8)
