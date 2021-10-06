@@ -11,7 +11,7 @@ const FILE_NAME = 'sdk';
 
 const PROTOCOL = 'https';
 const HOSTNAME = 'localhost.paypal.com';
-const PORT = 9000;
+const PORT = 9001;
 
 const WEBPACK_CONFIG_DEV : WebpackConfig = getWebpackConfig({
     entry:         './paypal.dev.js',
@@ -23,6 +23,7 @@ const WEBPACK_CONFIG_DEV : WebpackConfig = getWebpackConfig({
         ...globals,
         ...testGlobals,
         __PROTOCOL__:        PROTOCOL,
+        __PAYPAL_DOMAIN__:   'https://localhost.paypal.com:9001',
         __HOST__:            `${ HOSTNAME }:${ PORT }`,
         __SDK_HOST__:        `${ HOSTNAME }:${ PORT }`,
         __PORT__:            PORT,
