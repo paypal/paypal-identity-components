@@ -76,7 +76,7 @@ export function getElements(selector : string, container : HTMLElement | Documen
     if (!selector) {
         throw new Error(`No element passed`);
     }
-
+    // $FlowFixMe[method-unbinding]
     const elements = Array.prototype.slice.call(container.querySelectorAll(selector));
 
     if (!elements) {
@@ -121,13 +121,13 @@ export function destroyTestContainer() {
 
 patchXmlHttpRequest();
 
-export const loggerApiMock = $mockEndpoint.register({
+export const loggerApiMock : typeof $mockEndpoint = $mockEndpoint.register({
     method: 'POST',
     uri:    getPayPalLoggerUrl(),
     data:   {}
 });
 
-export const authApiMock = $mockEndpoint.register({
+export const authApiMock : typeof $mockEndpoint  = $mockEndpoint.register({
     method: 'POST',
     uri:    getAuthAPIUrl(),
     handler({ headers, data }) : {| access_token : string |} {
@@ -156,7 +156,7 @@ export const authApiMock = $mockEndpoint.register({
     }
 });
 
-export const orderApiMock = $mockEndpoint.register({
+export const orderApiMock : typeof $mockEndpoint = $mockEndpoint.register({
     method: 'POST',
     uri:    getOrderAPIUrl(),
     handler({ data, headers }) : {| id : string |} {
@@ -268,8 +268,8 @@ export function onWindowOpen({ time = 500 } : {| time? : number |} = {}) : Zalgo
     return new ZalgoPromise((resolve, reject) => {
 
         const winOpen = window.open;
+        // $FlowFixMe[method-unbinding]
         const documentCreateElement = document.createElement;
-
         const reset = () => {
             window.open = winOpen;
             // $FlowFixMe

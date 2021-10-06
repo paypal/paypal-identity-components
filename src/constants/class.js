@@ -11,8 +11,11 @@ export const CLASS = {
     SHAPE:      ('paypal-auth-button-shape' : 'paypal-auth-button-shape'),
     ENV:        ('paypal-auth-button-env' : 'paypal-auth-button-env'),
 
-    TEXT:  ('paypal-auth-button-text' : 'paypal-auth-button-text'),
-    SPACE: ('paypal-auth-button-space' : 'paypal-auth-button-space'),
-    
-    HIDDEN:  ('hidden' : 'hidden')
+    TEXT:            ('paypal-auth-button-text' : 'paypal-auth-button-text'),
+    SPACE:           ('paypal-auth-button-space' : 'paypal-auth-button-space'),
+    CHECKOUTOVERLAY: ('paypal-checkout-overlay' : 'paypal-checkout-overlay'),
+    CHECKOUTMODAL:   ('paypal-checkout-modal' : 'paypal-checkout-modal'),
+    CHECKOUTLOGO:    ('paypal-checkout-logo' : 'paypal-checkout-logo'),
+    HIDDEN:          ('hidden' : 'hidden'),
+    SPINNER_COLOR:   ('paypal-auth-button-spinner' : 'paypal-auth-button-spinner')
 };

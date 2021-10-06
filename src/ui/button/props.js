@@ -27,7 +27,7 @@ export type OnCancelActions = {|
 
 |};
 
-export type OnCancel = (OnCancelData, OnCancelActions) => ZalgoPromise<void> | void;
+export type OnCancel = (data : OnCancelData, actions : OnCancelActions) => ZalgoPromise<void> | void;
 
 export type OnClickData = {|
 
@@ -39,6 +39,16 @@ export type OnClickActions = {|
 
 export type OnClick = (OnClickData, OnClickActions) => void;
 
+export type OnErrorData = {|
+
+|};
+
+export type OnErrorActions = {|
+
+|};
+
+export type OnError = (data : OnErrorData, actions : OnErrorActions) => ZalgoPromise<void> | void;
+
 export type BillingOptions = {|
     type? : string | void,
     productCode? : string | void,
@@ -47,7 +57,7 @@ export type BillingOptions = {|
 |};
 
 export type ButtonStyle = {|
-    label : ?$Values<typeof BUTTON_LABEL>,
+    label : $Values<typeof BUTTON_LABEL> | void,
     color : $Values<typeof BUTTON_COLOR>,
     shape : $Values<typeof BUTTON_SHAPE>,
     height? : number
@@ -60,9 +70,6 @@ export type ButtonStyleInputs = {|
     height? : $PropertyType<ButtonStyle, 'height'> | void
 |};
 
-export type ButtonContent = {|
-    connectLabel? : string
-|};
 
 export type RenderButtonProps = {|
     style : ButtonStyle,
@@ -76,7 +83,9 @@ export type RenderButtonProps = {|
     sessionID : string,
     authButtonSessionID : string,
     nonce : string,
-    content : ButtonContent
+    content : string,
+    customLabel : string,
+    responseType : string
 |};
 
 export type PrerenderDetails = {|
@@ -92,8 +101,9 @@ export type ButtonProps = {|
     onCancel : OnCancel,
     onApprove : OnApprove,
     onClick : OnClick,
+    onError : OnError,
     getPrerenderDetails : GetPrerenderDetails,
-    style : ButtonStyle,
+    style : ButtonStyleInputs,
     locale : LocaleType,
     env : $Values<typeof ENV>,
     stage? : string,
@@ -106,32 +116,36 @@ export type ButtonProps = {|
     scopes : $ReadOnlyArray<string>,
     responseType : string,
     billingOptions : BillingOptions,
-    state? : string
-|};
-
+    state? : string,
+    cspNonce? : {|
+        nonce? : string
+    |}
+   |};
+   
 export type ButtonPropsInputs = {|
     clientID : string,
     fundingSource? : $Values<typeof FUNDING>,
     style? : ButtonStyleInputs | void,
     locale? : $PropertyType<ButtonProps, 'locale'> | void,
     env? : $PropertyType<ButtonProps, 'env'> | void,
-    meta? : $PropertyType<ButtonProps, 'meta'> | void,
     stage? : $PropertyType<ButtonProps, 'stage'> | void,
     stageUrl? : $PropertyType<ButtonProps, 'stageUrl'> | void,
     platform? : $PropertyType<ButtonProps, 'platform'> | void,
     authButtonSessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
     sessionID? : $PropertyType<ButtonProps, 'sessionID'> | void,
-    nonce? : string,
+    nonce : string,
+    responseType : string,
     csp? : {|
         nonce? : string
     |},
-    content? : ButtonContent,
+    displayLabel? : boolean,
+    customLabel : string,
     onClick? : OnClick
-|};
+  |};
 
 export const DEFAULT_STYLE = {
     COLOR:  BUTTON_COLOR.BLUE,
-    SHAPE:  BUTTON_SHAPE.RECT
+    SHAPE:  BUTTON_SHAPE.PILL
 };
 
 export const DEFAULT_PROPS = {
@@ -147,46 +161,35 @@ export const DEFAULT_PROPS = {
 // const ALLOWED_COLORS = values(BUTTON_COLOR);
 const ALLOWED_SHAPES = values(BUTTON_SHAPE);
 
-function getDefaultButtonContent() : ButtonContent {
-    // $FlowFixMe
-    return {};
-}
-
 export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonStyleInputs) : ButtonStyle {
-
+ 
     if (!style) {
         throw new Error(`Expected props.style to be set`);
     }
 
-    let ALLOWED_COLORS = [ BUTTON_COLOR.BLUE ];
+    let ALLOWED_COLORS = [ BUTTON_COLOR.BLACK, BUTTON_COLOR.BLUE, BUTTON_COLOR.DARKBLUE, BUTTON_COLOR.GOLD, BUTTON_COLOR.SILVER, BUTTON_COLOR.WHITE ];
     // $FlowFixMe
     const { fundingSource = FUNDING.PAYPAL } = props;
     if (fundingSource === FUNDING.PAYPAL) {
-        ALLOWED_COLORS = [ BUTTON_COLOR.BLUE, BUTTON_COLOR.GOLD ];
+        ALLOWED_COLORS = [ BUTTON_COLOR.BLACK, BUTTON_COLOR.BLUE, BUTTON_COLOR.DARKBLUE, BUTTON_COLOR.GOLD, BUTTON_COLOR.SILVER, BUTTON_COLOR.WHITE ];
     }
     if (fundingSource === FUNDING.CREDIT) {
         ALLOWED_COLORS = [ BUTTON_COLOR.DARKBLUE ];
     }
-
+    
     const {
         label,
         color = fundingSource === FUNDING.CREDIT ? BUTTON_COLOR.DARKBLUE : BUTTON_COLOR.BLUE,
-        shape = BUTTON_SHAPE.RECT,
+        shape = BUTTON_SHAPE.PILL,
         height
     } = style;
-
-    if (label && values(BUTTON_LABEL).indexOf(label) === -1) {
-        throw new Error(`Invalid label: ${ label }`);
-    }
 
     if (color && ALLOWED_COLORS.indexOf(color) === -1) {
         throw new Error(`Unexpected style.color for ${ fundingSource } button: ${ color }, expected ${ ALLOWED_COLORS.join(', ') }`);
     }
-
     if (shape && ALLOWED_SHAPES.indexOf(shape) === -1) {
         throw new Error(`Unexpected style.shape for ${ fundingSource } button: ${ shape }, expected ${ ALLOWED_SHAPES.join(', ') }`);
     }
-
     if (height !== undefined) {
         if (typeof height !== 'number') {
             throw new TypeError(`Expected style.height to be a number, got: ${ height }`);
@@ -198,7 +201,6 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
             throw new Error(`Expected style.height to be between ${ minHeight }px and ${ maxHeight }px - got ${ height }px`);
         }
     }
-
     return { label, color, shape, height };
 }
 
@@ -207,23 +209,23 @@ const ENVS = values(ENV);
 const PLATFORMS = values(PLATFORM);
 
 export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonProps {
-
     if (!props) {
         throw new Error(`Expected props`);
     }
-
     let {
         clientID,
         fundingSource,
-        style = {},
+        style,
         locale = DEFAULT_PROPS.LOCALE,
         env = DEFAULT_PROPS.ENV,
         platform = DEFAULT_PROPS.PLATFORM,
         sessionID = uniqueID(),
         authButtonSessionID = uniqueID(),
         csp = {},
-        nonce = '',
-        content = getDefaultButtonContent()
+        nonce,
+        content = '',
+        responseType,
+        customLabel
     } = props;
 
     const { country, lang } = locale;
@@ -243,20 +245,16 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
     if (PLATFORMS.indexOf(platform) === -1) {
         throw new Error(`Expected valid platform, got ${ platform || 'undefined' }`);
     }
-
     if (csp && csp.nonce) {
         nonce = csp.nonce;
     }
-
     if (fundingSource) {
         if (SUPPORTED_FUNDING_SOURCES.indexOf(fundingSource) === -1) {
             throw new Error(`Invalid funding source: ${ fundingSource }`);
         }
     }
-
     // $FlowFixMe
     style = normalizeButtonStyle(props, style);
-
     return { clientID, fundingSource, style, locale, env, platform,
-        authButtonSessionID, sessionID, nonce, content };
+        authButtonSessionID, sessionID, nonce, content, customLabel, responseType };
 }

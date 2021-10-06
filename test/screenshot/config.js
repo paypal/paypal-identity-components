@@ -7,7 +7,7 @@ import { BUTTON_LABEL, BUTTON_COLOR, BUTTON_SHAPE } from '../../src/constants';
 
 const SUPPORTED_FUNDING_SOURCES : $ReadOnlyArray<$Values<typeof FUNDING>> = [
     FUNDING.PAYPAL,
-    FUNDING.CREDIT
+    FUNDING.PAYPAL
 ];
 
 const RESPONSIVE_WIDTHS = [ 144, 222, 465, 670 ];
@@ -21,8 +21,8 @@ type ButtonConfig = {
     |},
     button? : {
         scopes : $ReadOnlyArray<string>,
-        fundingSource? : $Values<typeof FUNDING>,
         locale? : string,
+        responseType : string,
         style? : {
             color? : string,
             shape? : string,
@@ -36,10 +36,9 @@ export const buttonConfigs : Array<ButtonConfig> = [];
 const DEFAULT_OAUTH_PROPS = {
     scopes:          [ 'email' ],
     responseType:   'code',
-    billingOptions: {
-        type:        'MERCHANT',
-        productCode:    'PRODUCT_CODE',
-        cancelUrl:   'www.paypal.com'
+    style: {
+        color: 'blue',
+        shape: 'pill'
     }
 };
 
@@ -58,7 +57,7 @@ for (const label of [ BUTTON_LABEL.CONNECT ]) {
     buttonConfigs.push({
         button: {
             style: {
-                // color: 'blue',
+                // default  color: 'blue',
                 label
             },
             ...DEFAULT_OAUTH_PROPS

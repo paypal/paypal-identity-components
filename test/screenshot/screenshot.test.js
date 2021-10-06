@@ -20,7 +20,7 @@ const DIFF_THRESHOLD = 50;
 const HEADLESS = (process.env.HEADLESS !== '0');
 const DEVTOOLS = (process.env.DEVTOOLS === '1');
 
-jest.setTimeout(120000);
+jest.setTimeout(2400000);
 
 const setupBrowserPage = (async () => {
     const { browser, page, open } = await openPage(await webpackCompile(getWebpackConfig({
@@ -89,7 +89,7 @@ for (const config of buttonConfigs) {
             
             const renderPromise = window.paypal.AuthButton(options.button || {}).render(container);
             
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 300));
 
             const frame = container.querySelector('iframe');
 

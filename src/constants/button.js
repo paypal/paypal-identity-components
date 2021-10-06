@@ -1,12 +1,15 @@
 /* @flow */
 export const BUTTON_LABEL = {
-    CONNECT: ('connect' : 'connect')
+    CONNECT:     ('connect' : 'connect')
 };
 
 export const BUTTON_COLOR = {
     GOLD:        ('gold' : 'gold'),
     BLUE:        ('blue' : 'blue'),
-    DARKBLUE:    ('darkblue' : 'darkblue')
+    DARKBLUE:    ('darkblue' : 'darkblue'),
+    SILVER:      ('silver' : 'silver'),
+    WHITE:      ('white' : 'white'),
+    BLACK:      ('black' : 'black')
 };
 
 export const TEXT_COLOR = {

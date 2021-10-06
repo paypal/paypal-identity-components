@@ -22,20 +22,22 @@ for (const flow of [ 'popup', 'iframe' ]) {
             destroyTestContainer();
         });
 
-        it('should render a button into a container and click on the button, then complete the auth without createOrder', () => {
+        it('should render a button into a container and click on the button, then complete the auth without createOrder', (done) => {
             return wrapPromise(({ expect, avoid }) => {
                 window.paypal.AuthButton({
                     responseType:   'code',
                     scopes:          [ 'email' ],
+                    inputLabel: 'login',
                     billingOptions: {
                         type:        'MERCHANT',
-                        productCode: 'PRODUCT_CODE',
+                        productCode: 'P RODUCT_CODE',
                         cancelUrl:   'www.paypal.com'
                     },
                     onApprove: expect('onApprove'),
                     onCancel:  avoid('onCancel')
                 }).render('#testContainer');
-            });
+                done();
+            }).catch(done);
         });
     });
 }

@@ -20,6 +20,7 @@ describe(`paypal auth component happy path`, () => {
         return wrapPromise(({ expect, error }) => {
             return runOnClick(() => {
                 return window.paypal.Auth({
+                    responseType: 'code',
                     onApprove: expect('onApprove'),
                     onCancel:  error('onCancel')
                 }).render('body');

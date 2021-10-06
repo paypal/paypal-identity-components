@@ -45,7 +45,7 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
     // $FlowFixMe
     const { style } = props;
     const { label } = style;
-
+    
     const setupAutoResize = (el) => {
         event.on(EVENT.RESIZE, ({ width: newWidth, height: newHeight }) => {
             if (typeof newWidth === 'number') {
@@ -59,14 +59,16 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
     };
 
     const element = (
-        <div id={ uid } onRender={ setupAutoResize } class={ `${ tag } ${ tag }-context-${ context } ${ tag }-label-${ label }` }>
+        <div id={ uid } onRender={ setupAutoResize } class={ `${ tag } ${ tag }-context-${ context } ${ tag }-label-${ label || 'login' }` }>
             <style>
                 {`
                     #${ uid } {
                         position: relative;
                         display: inline-block;
                         width: 100%;
+                        min-height: 35px;
                         min-width: 200px;
+                        max-width: 750px;
                         font-size: 0;
                     }
 

@@ -1,12 +1,13 @@
 /* @flow */
 /* eslint import/no-nodejs-modules: off, import/no-default-export: off */
 
+import type { WebpackConfig } from 'grumbler-scripts/config/types';
 import { getWebpackConfig } from 'grumbler-scripts/config/webpack.config';
 
-import { testGlobals, fundingEligibility } from './test/globals';
+import { testGlobals } from './test/globals';
 import globals from './globals';
 
-const CHECK_SIZE_CONFIG = getWebpackConfig({
+const CHECK_SIZE_CONFIG : WebpackConfig = getWebpackConfig({
     filename:   'size',
     entry:      './src/interface/button.js',
     minify:     false,
@@ -14,12 +15,11 @@ const CHECK_SIZE_CONFIG = getWebpackConfig({
     analyze:    true,
     vars:       {
         ...globals,
-        ...testGlobals,
-        __FUNDING_ELIGIBILITY__: fundingEligibility
+        ...testGlobals
     }
 });
 
-const CHECK_SIZE_MIN_CONFIG = getWebpackConfig({
+const CHECK_SIZE_MIN_CONFIG : WebpackConfig = getWebpackConfig({
     filename:   'size',
     entry:      './src/interface/button.js',
     minify:     true,
@@ -27,8 +27,7 @@ const CHECK_SIZE_MIN_CONFIG = getWebpackConfig({
     analyze:    true,
     vars:       {
         ...globals,
-        ...testGlobals,
-        __FUNDING_ELIGIBILITY__: fundingEligibility
+        ...testGlobals
     }
 });
 
