@@ -152,11 +152,6 @@ export function getAuthComponent() : ZoidComponent<AuthPropsType> {
                     required:   false
                 },
 
-                onError: {
-                    type:       'function',
-                    required:   false
-                },
-
                 test: {
                     type:          'object',
                     default: () => (window.__test__ || { action: 'auth' })
