@@ -39,16 +39,6 @@ export type OnClickActions = {|
 
 export type OnClick = (OnClickData, OnClickActions) => void;
 
-export type OnErrorData = {|
-
-|};
-
-export type OnErrorActions = {|
-
-|};
-
-export type OnError = (data : OnErrorData, actions : OnErrorActions) => ZalgoPromise<void> | void;
-
 export type BillingOptions = {|
     type? : string | void,
     productCode? : string | void,
@@ -101,7 +91,6 @@ export type ButtonProps = {|
     onCancel : OnCancel,
     onApprove : OnApprove,
     onClick : OnClick,
-    onError : OnError,
     getPrerenderDetails : GetPrerenderDetails,
     style : ButtonStyleInputs,
     locale : LocaleType,

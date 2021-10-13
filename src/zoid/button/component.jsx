@@ -105,12 +105,7 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
                 type:     'function',
                 required: false
             },
-            
-            onError: {
-                type:       'function',
-                required:   false
-            },
-            
+                     
             onClick: {
                 type:     'function',
                 required: false
