@@ -1,3 +1,10 @@
+## <small>5.0.8 (2021-10-13)</small>
+
+* Add support for `npm run dev` (#16) ([e5bf48a](https://github.paypal.com/paypal/paypal-auth/commit/e5bf48a)), closes [#16](https://github.paypal.com/paypal/paypal-auth/issues/16)
+* Remove the unused onError callback ([fff0c2f](https://github.paypal.com/paypal/paypal-auth/commit/fff0c2f))
+
+
+
 ## <small>5.0.7 (2021-10-06)</small>
 
 * Remove eslint (#15) ([8378649](https://github.paypal.com/paypal/paypal-auth/commit/8378649)), closes [#15](https://github.paypal.com/paypal/paypal-auth/issues/15)
