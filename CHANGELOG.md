@@ -1,3 +1,11 @@
+## <small>5.0.9 (2022-02-18)</small>
+
+* move to gh-actions (#18) ([62090cc](https://github.paypal.com/paypal/paypal-auth/commit/62090cc)), closes [#18](https://github.paypal.com/paypal/paypal-auth/issues/18)
+* update from master to main branch (#19) ([d71b6de](https://github.paypal.com/paypal/paypal-auth/commit/d71b6de)), closes [#19](https://github.paypal.com/paypal/paypal-auth/issues/19)
+* use new kraken org prefix for cross-domain-utils (#20) ([63304ef](https://github.paypal.com/paypal/paypal-auth/commit/63304ef)), closes [#20](https://github.paypal.com/paypal/paypal-auth/issues/20)
+
+
+
 ## <small>5.0.8 (2021-10-13)</small>
 
 * Add support for `npm run dev` (#16) ([e5bf48a](https://github.paypal.com/paypal/paypal-auth/commit/e5bf48a)), closes [#16](https://github.paypal.com/paypal/paypal-auth/issues/16)
