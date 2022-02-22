@@ -3,7 +3,7 @@
 
 import { node, type ChildType } from 'jsx-pragmatic/src';
 // import { popup, supportsPopups, writeElementToWindow } from 'belter/src';
-import {  type CrossDomainWindowType } from '@krakenjs/cross-domain-utils/src';
+import {  type CrossDomainWindowType } from 'cross-domain-utils/src';
 import { VenmoSpinnerPage } from '@paypal/common-components/src/ui';
 import type { ZoidProps } from 'zoid/src';
 

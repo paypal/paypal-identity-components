@@ -4,7 +4,7 @@ import { ZalgoPromise } from 'zalgo-promise/src';
 import { values, uniqueID } from 'belter/src';
 import { FUNDING, PLATFORM, INTENT,
     ENV, COUNTRY, LANG, COUNTRY_LANGS, type LocaleType, CARD } from '@paypal/sdk-constants/src';
-import { type CrossDomainWindowType } from '@krakenjs/cross-domain-utils/src';
+import { type CrossDomainWindowType } from 'cross-domain-utils/src';
 import { SUPPORTED_FUNDING_SOURCES } from '@paypal/funding-components/src';
 
 import { BUTTON_LABEL, BUTTON_COLOR, BUTTON_SHAPE } from '../../constants';
