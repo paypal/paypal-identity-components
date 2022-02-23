@@ -1,3 +1,10 @@
+## <small>5.0.10 (2022-02-23)</small>
+
+* Revert "use new kraken org prefix for cross-domain-utils (#20)" (#22) ([dafe1fc](https://github.paypal.com/paypal/paypal-auth/commit/dafe1fc)), closes [#20](https://github.paypal.com/paypal/paypal-auth/issues/20) [#22](https://github.paypal.com/paypal/paypal-auth/issues/22)
+* Update LICENSE.txt (#21) ([5efe696](https://github.paypal.com/paypal/paypal-auth/commit/5efe696)), closes [#21](https://github.paypal.com/paypal/paypal-auth/issues/21)
+
+
+
 ## <small>5.0.9 (2022-02-18)</small>
 
 * move to gh-actions (#18) ([62090cc](https://github.paypal.com/paypal/paypal-auth/commit/62090cc)), closes [#18](https://github.paypal.com/paypal/paypal-auth/issues/18)
