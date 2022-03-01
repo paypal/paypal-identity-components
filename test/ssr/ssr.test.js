@@ -2,7 +2,7 @@
 /* eslint no-restricted-globals: 0, promise/no-native: 0 */
 
 import { getWebpackConfig } from 'grumbler-scripts/config/webpack.config';
-import { html, ElementNode } from 'jsx-pragmatic';
+import { html, ElementNode } from '@krakenjs/jsx-pragmatic';
 
 import { webpackCompileToString } from '../screenshot/lib/compile';
 

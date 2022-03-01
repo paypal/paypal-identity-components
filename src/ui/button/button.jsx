@@ -1,9 +1,9 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ElementNode, type ComponentNode } from 'jsx-pragmatic/src';
+import { node, type ElementNode, type ComponentNode } from '@krakenjs/jsx-pragmatic/src';
 import {  LOGO_COLOR, PPLogo } from '@paypal/sdk-logos/src';
-import { noop } from 'belter/src';
+import { noop } from '@krakenjs/belter/src';
 
 import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
 import { Text } from '../text';
