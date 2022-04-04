@@ -1,7 +1,7 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ChildType, type ChildrenType } from 'jsx-pragmatic/src';
+import { node, type ChildType, type ChildrenType } from '@krakenjs/jsx-pragmatic/src';
 
 import { CLASS } from '../constants';
 

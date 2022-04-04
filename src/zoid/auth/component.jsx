@@ -2,13 +2,13 @@
 /** @jsx node */
 /* eslint max-lines: 0 */
 
-import { node, dom } from 'jsx-pragmatic/src';
+import { node, dom } from '@krakenjs/jsx-pragmatic/src';
 import {
     getPayPalDomainRegex, getLogger,  getEnv, getClientID,
     getSDKMeta, getCSPNonce, getPayPalDomain, getSessionID
 } from '@paypal/sdk-client/src';
-import { create, CONTEXT, type ZoidComponent } from 'zoid/src';
-import { isDevice, supportsPopups, inlineMemoize } from 'belter/src';
+import { create, CONTEXT, type ZoidComponent } from '@krakenjs/zoid/src';
+import { isDevice, supportsPopups, inlineMemoize } from '@krakenjs/belter/src';
 import { Overlay, SpinnerPage } from '@paypal/common-components/src';
 
 import { validateResponseType } from '../button/util';

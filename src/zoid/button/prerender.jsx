@@ -1,11 +1,11 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ChildType } from 'jsx-pragmatic/src';
-// import { popup, supportsPopups, writeElementToWindow } from 'belter/src';
-import {  type CrossDomainWindowType } from 'cross-domain-utils/src';
+import { node, type ChildType } from '@krakenjs/jsx-pragmatic/src';
+// import { popup, supportsPopups, writeElementToWindow } from '@krakenjs/belter/src';
+import {  type CrossDomainWindowType } from '@krakenjs/cross-domain-utils/src';
 import { VenmoSpinnerPage } from '@paypal/common-components/src/ui';
-import type { ZoidProps } from 'zoid/src';
+import type { ZoidProps } from '@krakenjs/zoid/src';
 
 // import { DEFAULT_POPUP_SIZE } from '../auth';
 import { AuthButton } from '../../ui';

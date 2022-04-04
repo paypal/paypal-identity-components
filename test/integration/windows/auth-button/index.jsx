@@ -1,7 +1,7 @@
 /* @flow */
 /** @jsx node */
 
-import { node, dom } from 'jsx-pragmatic/src';
+import { node, dom } from '@krakenjs/jsx-pragmatic/src';
 
 import { AuthButton as ButtonTemplate } from '../../../../src/ui/button';
 import { getElements } from '../../tests/common';

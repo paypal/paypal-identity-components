@@ -1,9 +1,9 @@
 /* @flow */
 /** @jsx node */
 
-import { destroyElement, toCSS } from 'belter/src';
-import { node, dom } from 'jsx-pragmatic/src';
-import { EVENT, type RenderOptionsType } from 'zoid/src';
+import { destroyElement, toCSS } from '@krakenjs/belter/src';
+import { node, dom } from '@krakenjs/jsx-pragmatic/src';
+import { EVENT, type RenderOptionsType } from '@krakenjs/zoid/src';
 
 import { type ButtonProps } from '../../ui/button/props';
 

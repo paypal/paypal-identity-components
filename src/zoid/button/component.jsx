@@ -6,9 +6,9 @@ import {
     getLogger, getLocale, getClientID, getEnv, getSessionID,
     getMerchantID, getPayPalDomainRegex, getCurrency, getSDKMeta, getCSPNonce, getBuyerCountry, getPlatform,
     getPartnerAttributionID, getCorrelationID, getDebug, getStageHost, getAPIStageHost, getPayPalDomain } from '@paypal/sdk-client/src';
-import { create, type ZoidComponent } from 'zoid/src';
-import { uniqueID, memoize } from 'belter/src';
-import { node, dom } from 'jsx-pragmatic/src';
+import { create, type ZoidComponent } from '@krakenjs/zoid/src';
+import { uniqueID, memoize } from '@krakenjs/belter/src';
+import { node, dom } from '@krakenjs/jsx-pragmatic/src';
 // import { getRefinedFundingEligibility } from '@paypal/funding-components/src';
 import { FUNDING } from '@paypal/sdk-constants/src';
 
