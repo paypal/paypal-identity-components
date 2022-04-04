@@ -1,3 +1,10 @@
+## <small>5.0.11 (2022-04-04)</small>
+
+* chore: update packages to krakenjs scope (#23) ([65b7ad4](https://github.paypal.com/paypal/paypal-auth/commit/65b7ad4)), closes [#23](https://github.paypal.com/paypal/paypal-auth/issues/23)
+* chore: update scripts for krakenjs scope ([63f9c59](https://github.paypal.com/paypal/paypal-auth/commit/63f9c59))
+
+
+
 ## <small>5.0.10 (2022-02-23)</small>
 
 * Revert "use new kraken org prefix for cross-domain-utils (#20)" (#22) ([dafe1fc](https://github.paypal.com/paypal/paypal-auth/commit/dafe1fc)), closes [#20](https://github.paypal.com/paypal/paypal-auth/issues/20) [#22](https://github.paypal.com/paypal/paypal-auth/issues/22)
