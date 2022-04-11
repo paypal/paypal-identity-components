@@ -27,7 +27,7 @@ type LogoProps = {|
 
 // function to render the "PP" abreviated logo
 function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
-   
+
     const { color = BUTTON_COLOR.BLUE } = style;
     if (color === BUTTON_COLOR.BLUE || color === BUTTON_COLOR.DARKBLUE || color === BUTTON_COLOR.BLACK) {
         return <PPLogo logoColor={ LOGO_COLOR.WHITE } />;
@@ -69,7 +69,7 @@ export function AuthButton(props : ButtonProps) : ElementNode {
         event.preventDefault();
         event.stopPropagation();
         event.target.blur();
-        
+
         onClick(event, { fundingSource, ...opts });
     };
 
@@ -92,7 +92,6 @@ export function AuthButton(props : ButtonProps) : ElementNode {
             />
 
             <div
-            
                 role='button'
                 { ...{
                     [ATTRIBUTE.BUTTON]:         true,
@@ -108,7 +107,7 @@ export function AuthButton(props : ButtonProps) : ElementNode {
                 onClick={ clickHandler }
                 onKeyPress={ keypressHandler }
                 tabindex='0'>
-                    
+
                 { customLabel &&
                     <div class={ CLASS.BUTTON_LABEL }>
                         <PPSymbol style={ style } />

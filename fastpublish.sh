@@ -15,8 +15,8 @@ if ! git diff-index --quiet --cached HEAD; then
     exit 1;
 fi;
 
-rm -rf node_modules/@krakenjs/zoid node_modules/@krakenjs/post-robot node_modules/@krakenjs/zalgo-promise node_modules/@krakenjs/beaver-logger node_modules/@krakenjs/cross-domain-safe-weakmap node_modules/@krakenjs/cross-domain-utils node_modules/grumbler-scripts
-npm install @krakenjs/zoid @krakenjs/post-robot @krakenjs/zalgo-promise @krakenjs/beaver-logger @krakenjs/cross-domain-safe-weakmap @krakenjs/cross-domain-utils grumbler-scripts
+rm -rf node_modules/@krakenjs/zoid node_modules/@krakenjs/post-robot node_modules/@krakenjs/zalgo-promise node_modules/@krakenjs/beaver-logger node_modules/@krakenjs/cross-domain-safe-weakmap node_modules/@krakenjs/cross-domain-utils node_modules/@krakenjs/grumbler-scripts
+npm install @krakenjs/zoid @krakenjs/post-robot @krakenjs/zalgo-promise @krakenjs/beaver-logger @krakenjs/cross-domain-safe-weakmap @krakenjs/cross-domain-utils @krakenjs/grumbler-scripts
 
 npm run flow;
 npm run lint;

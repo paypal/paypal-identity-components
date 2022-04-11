@@ -11,6 +11,7 @@ type StyleProps = {|
     nonce : string
 |};
 
+// eslint-disable-next-line no-unused-vars
 export function Style({ style, nonce } : StyleProps) : ElementNode {
     const css = componentStyle();
 
