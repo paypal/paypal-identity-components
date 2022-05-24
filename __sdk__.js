@@ -8,5 +8,8 @@ module.exports = {
         entry:        './src/interface/button',
         setupHandler: 'setupButton',
         globals
+    },
+    'visitor': {
+        entry:        './src/visitor'
     }
 };
