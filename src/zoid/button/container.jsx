@@ -43,9 +43,8 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
     });
 
     // $FlowFixMe
-    const { style } = props;
-    const { label } = style;
-    
+    const { style: { height, label } } = props;
+
     const setupAutoResize = (el) => {
         event.on(EVENT.RESIZE, ({ width: newWidth, height: newHeight }) => {
             if (typeof newWidth === 'number') {
@@ -67,6 +66,7 @@ export function containerTemplate({ uid, props, tag, context, frame, prerenderFr
                         display: inline-block;
                         width: 100%;
                         min-height: 35px;
+                        ${ height ? `height: ${ height }px;` : '' }
                         min-width: 200px;
                         max-width: 750px;
                         font-size: 0;

@@ -6,8 +6,6 @@ import {  LOGO_COLOR, PPLogo } from '@paypal/sdk-logos/src';
 import { noop } from '@krakenjs/belter/src';
 
 import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
-import { Text } from '../text';
-
 
 import { normalizeButtonProps, type ButtonStyle, type ButtonPropsInputs } from './props';
 import { Style } from './style';
@@ -41,29 +39,9 @@ function PPSymbol({ style } : LogoProps) : ComponentNode<LogoProps> {
 
 }
 
-type LabelProps = {|
-    style : ButtonStyle,
-    content : string
-|};
-
-function Label({ style, content } : LabelProps) : ?ComponentNode<{||}> {
-    const { label } = style;
-    const text  = content;
-    if (!label) {
-        return <Text>Log in with PayPal</Text>;
-    }
-
-    if (label) {
-        return <Text>{ label }</Text>;
-    }
-
-    throw new Error(`Unsupported button label: ${ label || text }`);
-}
-
 export function AuthButton(props : ButtonProps) : ElementNode {
     const { onClick = noop } = props;
-    const { fundingSource, style,  env,
-        nonce, customLabel } = normalizeButtonProps(props);
+    const { fundingSource, style,  env, nonce } = normalizeButtonProps(props);
     const { shape, color } = style;
     const clickHandler = (event, opts) => {
         event.preventDefault();
@@ -78,7 +56,6 @@ export function AuthButton(props : ButtonProps) : ElementNode {
             clickHandler(event, opts);
         }
     };
-
     return (
         <div class={ [
             CLASS.CONTAINER,
@@ -89,30 +66,27 @@ export function AuthButton(props : ButtonProps) : ElementNode {
             <Style
                 nonce={ nonce }
                 style={ style }
-            />
+        />
 
             <div
                 role='button'
                 { ...{
-                    [ATTRIBUTE.BUTTON]:         true,
-                    [ATTRIBUTE.FUNDING_SOURCE]: fundingSource
-                } }
+            [ATTRIBUTE.BUTTON]:         true,
+            [ATTRIBUTE.FUNDING_SOURCE]: fundingSource
+        } }
                 class={ [
-                    CLASS.BUTTON,
-                    `${ CLASS.SHAPE }-${ shape }`,
-                    `${ CLASS.ENV }-${ env }`,
-                    `${ CLASS.COLOR }-${ color }`,
-                    `${ CLASS.TEXT_COLOR }-${ TEXT_COLOR.WHITE }`
-                ].join(' ') }
+            CLASS.BUTTON,
+            `${ CLASS.SHAPE }-${ shape }`,
+            `${ CLASS.ENV }-${ env }`,
+            `${ CLASS.COLOR }-${ color }`,
+            `${ CLASS.TEXT_COLOR }-${ TEXT_COLOR.WHITE }`
+        ].join(' ') }
                 onClick={ clickHandler }
                 onKeyPress={ keypressHandler }
                 tabindex='0'>
-
-                { customLabel &&
-                    <div class={ CLASS.BUTTON_LABEL }>
-                        <PPSymbol style={ style } />
-                        <Label style={ style } content={ customLabel } />
-                    </div>}
+                <div class={ CLASS.BUTTON_LABEL }>
+                    <PPSymbol style={ style } />
+                </div>
             </div>
         </div>
     );
