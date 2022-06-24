@@ -6,8 +6,6 @@ import {  LOGO_COLOR, PPLogo } from '@paypal/sdk-logos/src';
 import { noop } from '@krakenjs/belter/src';
 
 import { CLASS, ATTRIBUTE, BUTTON_COLOR, TEXT_COLOR } from '../../constants';
-import { Text } from '../text';
-
 
 import { normalizeButtonProps, type ButtonStyle, type ButtonPropsInputs } from './props';
 import { Style } from './style';
@@ -88,7 +86,6 @@ export function AuthButton(props : ButtonProps) : ElementNode {
                 tabindex='0'>
                 <div class={ CLASS.BUTTON_LABEL }>
                     <PPSymbol style={ style } />
-                    <Text>{ style.label || 'Log in with PayPal' }</Text>
                 </div>
             </div>
         </div>
