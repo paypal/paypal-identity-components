@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://localhost.paypal.com:9001/sdk.js?client-id=alc_client1"></script>
-    <script src="https://localhost.paypal.com:9001/button.js"></script>
-    <script src="https://localhost.paypal.com:9001/jsx-pragmatic.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://localhost.paypal.com:9001/sdk.js?client-id=alc_client1"></script>
+  <script src="https://localhost.paypal.com:9001/button.js"></script>
+  <script src="https://localhost.paypal.com:9001/jsx-pragmatic.js"></script>
 </head>
 
 <body>
-    <script>
-        document.write(button.AuthButton({
-            ...xprops,
-            customLabel: 'Connect with PayPal',
-            displayLabel: true,
-            onClick: () => {}
-        }).render(jsx.html()));
+  <script>
+    document.write(
+      button
+        .AuthButton({
+          ...xprops,
+          customLabel: "Connect with PayPal",
+          displayLabel: true,
+          onClick: () => {},
+        })
+        .render(jsx.html())
+    );
 
-        document.querySelectorAll('[data-funding-source]').forEach(button => {
-            button.addEventListener('click', () => {
-                const instance = paypal.Auth({
-                    ...xprops,
-                    onApprove: () => {
-                        console.log('Approved');
-                        instance.close();
-                    },
-                    onCancel: () => {
-                        console.log('Cancelled');
-                        instance.close();
-                    }
-                });
-
-                instance.renderTo(window.parent, 'body');
-            });
+    document.querySelectorAll("[data-funding-source]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const instance = paypal.Auth({
+          ...xprops,
+          onApprove: () => {
+            console.log("Approved");
+            instance.close();
+          },
+          onCancel: () => {
+            console.log("Cancelled");
+            instance.close();
+          },
         });
-    </script>
+
+        instance.renderTo(window.parent, "body");
+      });
+    });
+  </script>
 </body>

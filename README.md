@@ -1,5 +1,4 @@
-PayPal Auth Components
-----------------------
+## PayPal Auth Components
 
 [![npm version](https://img.shields.io/npm/v/@paypal/identity-components.svg?style=flat-square)](https://www.npmjs.com/package/@paypal/identity-components)
 
@@ -28,16 +27,17 @@ npm run dev
 ```
 
 ## Test Tasks
+
 ```
 npm test
 ```
 
-| Flags  | Description |
-| ------------- | ------------- |
-| --clear-cache | Clear Babel Loader and PhantomJS cache |
-| --debug | Debug mode.  PhantomJS, Karma, and AuthJS  |
-| --quick | Fastest testing.  Minimal output, no coverage |
-| --browser | Choose Browser |
+| Flags         | Description                                  |
+| ------------- | -------------------------------------------- |
+| --clear-cache | Clear Babel Loader and PhantomJS cache       |
+| --debug       | Debug mode. PhantomJS, Karma, and AuthJS     |
+| --quick       | Fastest testing. Minimal output, no coverage |
+| --browser     | Choose Browser                               |
 
 ## Releasing
 

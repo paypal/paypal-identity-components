@@ -3,275 +3,298 @@
 /* eslint max-lines: 0 */
 
 import {
-    getLogger, getLocale, getClientID, getEnv, getSessionID,
-    getMerchantID, getPayPalDomainRegex, getCurrency, getSDKMeta, getCSPNonce, getBuyerCountry, getPlatform,
-    getPartnerAttributionID, getCorrelationID, getDebug, getStageHost, getAPIStageHost, getPayPalDomain } from '@paypal/sdk-client/src';
-import { create, type ZoidComponent } from '@krakenjs/zoid/src';
-import { uniqueID, memoize } from '@krakenjs/belter/src';
-import { node, dom } from '@krakenjs/jsx-pragmatic/src';
+  getLogger,
+  getLocale,
+  getClientID,
+  getEnv,
+  getSessionID,
+  getMerchantID,
+  getPayPalDomainRegex,
+  getCurrency,
+  getSDKMeta,
+  getCSPNonce,
+  getBuyerCountry,
+  getPlatform,
+  getPartnerAttributionID,
+  getCorrelationID,
+  getDebug,
+  getStageHost,
+  getAPIStageHost,
+  getPayPalDomain,
+} from "@paypal/sdk-client/src";
+import { create, type ZoidComponent } from "@krakenjs/zoid/src";
+import { uniqueID, memoize } from "@krakenjs/belter/src";
+import { node, dom } from "@krakenjs/jsx-pragmatic/src";
 // import { getRefinedFundingEligibility } from '@paypal/funding-components/src';
-import { FUNDING } from '@paypal/sdk-constants/src';
+import { FUNDING } from "@paypal/sdk-constants/src";
 
-import { normalizeButtonStyle, type ButtonProps } from '../../ui/button/props';
-import { getRedirectUrl } from '../auth/config';
+import { normalizeButtonStyle, type ButtonProps } from "../../ui/button/props";
+import { getRedirectUrl } from "../auth/config";
 
-import { validateScopes, validateResponseType, validateInputLabel } from './util';
-import { containerTemplate } from './container';
-import { PrerenderedButton } from './prerender';
+import {
+  validateScopes,
+  validateResponseType,
+  validateInputLabel,
+} from "./util";
+import { containerTemplate } from "./container";
+import { PrerenderedButton } from "./prerender";
 
 export type AuthButtonComponent = ZoidComponent<ButtonProps>;
 
 // $FlowFixMe
-export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> => {
-
+export const getAuthButtonComponent = memoize(
+  (): ZoidComponent<ButtonProps> => {
     const AuthButton = create({
-        tag:  'paypal-auth-button',
-        url: () => `${ getPayPalDomain() }${ __PAYPAL_IDENTITY__.__URI__.__BUTTON__ }`,
+      tag: "paypal-auth-button",
+      url: () =>
+        `${getPayPalDomain()}${__PAYPAL_IDENTITY__.__URI__.__BUTTON__}`,
 
-        domain: getPayPalDomainRegex(),
-        
-        autoResize: {
-            width:  false,
-            height: true
+      domain: getPayPalDomainRegex(),
+
+      autoResize: {
+        width: false,
+        height: true,
+      },
+
+      containerTemplate,
+
+      logger: getLogger(),
+
+      prerenderTemplate: ({ state, props, doc }) => {
+        return (
+          <PrerenderedButton
+            nonce={props.nonce}
+            props={props}
+            onRenderAuth={({ win }) => {
+              state.prerenderDetails = { win };
+            }}
+          />
+        ).render(dom({ doc }));
+      },
+
+      attributes: {
+        iframe: {
+          allowpaymentrequest: "allowpaymentrequest",
+          scrolling: "no",
         },
-        
-        containerTemplate,
+      },
 
-        logger: getLogger(),
-        
-        prerenderTemplate: ({ state, props, doc }) => {
-          
-            return (
-                <PrerenderedButton
-                    nonce={ props.nonce }
-                    props={ props }
-                    onRenderAuth={ ({ win }) => {
-                        state.prerenderDetails = { win };
-                    } }
-                />
-            ).render(dom({ doc }));
+      props: {
+        style: {
+          type: "object",
+          queryParam: true,
+          required: false,
+          decorate: ({ props, value }) => {
+            // $FlowFixMe
+            return normalizeButtonStyle(props, value);
+          },
+
+          validate: ({ props, value = {} }) => {
+            // $FlowFixMe
+            normalizeButtonStyle(props, value);
+          },
+
+          default: () => ({}),
         },
 
-        attributes: {
-            iframe: {
-                allowpaymentrequest: 'allowpaymentrequest',
-                scrolling:           'no'
-            }
+        locale: {
+          type: "object",
+          queryParam: true,
+          value: getLocale,
         },
 
-        props: {
-            style: {
-                type:       'object',
-                queryParam: true,
-                required:   false,
-                decorate:   ({ props, value }) => {
-                    // $FlowFixMe
-                    return normalizeButtonStyle(props, value);
-                },
+        fundingSource: {
+          type: "string",
+          queryParam: true,
+          default: () => FUNDING.PAYPAL,
+        },
 
-                validate: ({ props, value = {} }) => {
-                    // $FlowFixMe
-                    normalizeButtonStyle(props, value);
-                },
+        sdkMeta: {
+          type: "string",
+          queryParam: true,
+          sendToChild: true,
+          value: getSDKMeta,
+        },
 
-                default: () => ({})
-            },
+        onApprove: {
+          type: "function",
+          required: false,
+        },
 
-            locale: {
-                type:       'object',
-                queryParam: true,
-                value:      getLocale
-            },
+        onCancel: {
+          type: "function",
+          required: false,
+        },
 
-            fundingSource: {
-                type:       'string',
-                queryParam: true,
-                default:    () => FUNDING.PAYPAL
-            },
+        onClick: {
+          type: "function",
+          required: false,
+        },
 
-            sdkMeta: {
-                type:        'string',
-                queryParam:  true,
-                sendToChild: true,
-                value:       getSDKMeta
-            },
+        getPrerenderDetails: {
+          type: "function",
+          value:
+            ({ state }) =>
+            () =>
+              state.prerenderDetails,
+        },
 
-            onApprove: {
-                type:     'function',
-                required: false
-            },
+        clientID: {
+          type: "string",
+          queryParam: true,
+          value: getClientID,
+        },
 
-            onCancel: {
-                type:     'function',
-                required: false
-            },
-                     
-            onClick: {
-                type:     'function',
-                required: false
-            },
+        partnerAttributionID: {
+          type: "string",
+          required: false,
+          value: getPartnerAttributionID,
+        },
 
-            getPrerenderDetails: {
-                type:  'function',
-                value: ({ state }) => () => state.prerenderDetails
-            },
+        correlationID: {
+          type: "string",
+          required: false,
+          value: getCorrelationID,
+        },
 
-            clientID: {
-                type:       'string',
-                queryParam:  true,
-                value:      getClientID
-            },
+        sessionID: {
+          type: "string",
+          value: getSessionID,
+          queryParam: true,
+        },
 
-            partnerAttributionID: {
-                type:       'string',
-                required:   false,
-                value:      getPartnerAttributionID
-            },
+        authButtonSessionID: {
+          type: "string",
+          value: uniqueID,
+          queryParam: true,
+        },
 
-            correlationID: {
-                type:       'string',
-                required:   false,
-                value:      getCorrelationID
-            },
+        env: {
+          type: "string",
+          queryParam: true,
+          value: getEnv,
+        },
 
-            sessionID: {
-                type:       'string',
-                value:      getSessionID,
-                queryParam: true
-            },
+        stageHost: {
+          type: "string",
+          value: getStageHost,
+          required: false,
+        },
 
-            authButtonSessionID: {
-                type:       'string',
-                value:      uniqueID,
-                queryParam: true
-            },
+        apiStageHost: {
+          type: "string",
+          value: getAPIStageHost,
+          required: false,
+        },
 
-            env: {
-                type:       'string',
-                queryParam: true,
-                value:      getEnv
-            },
+        platform: {
+          type: "string",
+          queryParam: true,
+          value: getPlatform,
+        },
 
-            stageHost: {
-                type:       'string',
-                value:      getStageHost,
-                required:   false
-            },
+        currency: {
+          type: "string",
+          queryParam: true,
+          value: getCurrency,
+        },
 
-            apiStageHost: {
-                type:       'string',
-                value:      getAPIStageHost,
-                required:   false
-            },
+        buyerCountry: {
+          type: "string",
+          queryParam: true,
+          required: false,
+          value: getBuyerCountry,
+        },
 
-            platform: {
-                type:       'string',
-                queryParam: true,
-                value:      getPlatform
-            },
-            
-            currency: {
-                type:       'string',
-                queryParam: true,
-                value:      getCurrency
-            },
+        merchantID: {
+          type: "array",
+          queryParam: true,
+          value: getMerchantID,
+        },
+        nonce: {
+          type: "string",
+          queryParam: true,
+          value: getCSPNonce,
+        },
+        csp: {
+          type: "object",
+          required: false,
+          queryParam: true,
+          value: () => {
+            return {
+              nonce: getCSPNonce(),
+            };
+          },
+        },
 
-            buyerCountry: {
-                type:       'string',
-                queryParam: true,
-                required:   false,
-                value:      getBuyerCountry
-            },
+        debug: {
+          type: "boolean",
+          value: getDebug,
+          queryParam: true,
+        },
 
-            merchantID: {
-                type:       'array',
-                queryParam: true,
-                value:      getMerchantID
-            },
-            nonce: {
-                type:       'string',
-                queryParam: true,
-                value:      getCSPNonce
-            },
-            csp: {
-                type:       'object',
-                required:   false,
-                queryParam: true,
-                value:       () => {
-                    return {
-                        nonce: getCSPNonce()
-                    };
-                }
-            },
+        test: {
+          type: "object",
+          default(): Object {
+            return {
+              action: "auth",
+            };
+          },
+        },
+        // fetch this value from config
+        returnurl: {
+          type: "string",
+          queryParam: true,
+          value: () => getRedirectUrl(),
+        },
+        scopes: {
+          type: "array",
+          required: true,
+          queryParam: true,
+          validate: ({ value }) => {
+            return validateScopes(value);
+          },
+          queryValue: ({ value }) => {
+            return value.join(" ");
+          },
+        },
 
-            debug: {
-                type:       'boolean',
-                value:      getDebug,
-                queryParam: true
-            },
+        responseType: {
+          type: "string",
+          queryParam: true,
+          required: true,
+          validate: ({ value }) => {
+            return validateResponseType(value);
+          },
+        },
 
-            test: {
-                type: 'object',
-                default() : Object {
-                    return {
-                        action: 'auth'
-                    };
-                }
-            },
-            // fetch this value from config
-            returnurl: {
-                type:       'string',
-                queryParam: true,
-                value:      () => getRedirectUrl()
-            },
-            scopes: {
-                type:          'array',
-                required:      true,
-                queryParam:    true,
-                validate:      ({ value }) => {
-                    return validateScopes(value);
-                },
-                queryValue:    ({ value }) => {
-                    return value.join(' ');
-                }
-            },
+        inputLabel: {
+          type: "string",
+          queryParam: true,
+          required: false,
+          validate: ({ value }) => {
+            return validateInputLabel(value);
+          },
+        },
 
-            responseType: {
-                type:       'string',
-                queryParam: true,
-                required:   true,
-                validate:   ({ value }) => {
-                    return validateResponseType(value);
-                }
-            },
+        // billingOptions: {
+        //     type:          'object',
+        //     queryParam:    true,
+        //     required:      false,
+        //     serialization: 'base64'
+        // },
 
-            inputLabel: {
-                type:       'string',
-                queryParam: true,
-                required:   false,
-                validate:   ({ value }) => {
-                    return validateInputLabel(value);
-                }
-            },
-
-            // billingOptions: {
-            //     type:          'object',
-            //     queryParam:    true,
-            //     required:      false,
-            //     serialization: 'base64'
-            // },
-
-            state: {
-                type:       'string',
-                queryParam: true,
-                default:    () => ('')
-            }
-        }
+        state: {
+          type: "string",
+          queryParam: true,
+          default: () => "",
+        },
+      },
     });
 
     const ButtonWrapper = (props) => {
-        const instance = AuthButton(props);
-        return instance;
+      const instance = AuthButton(props);
+      return instance;
     };
 
     ButtonWrapper.driver = AuthButton.driver;
@@ -280,4 +303,5 @@ export const getAuthButtonComponent = memoize(() : ZoidComponent<ButtonProps> =>
 
     // $FlowFixMe
     return ButtonWrapper;
-});
+  }
+);
