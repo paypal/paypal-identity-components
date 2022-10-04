@@ -1,3 +1,11 @@
+## <small>5.0.12 (2022-10-04)</small>
+
+* Update dependencies (#28) ([5bd9251](https://github.com/paypal/paypal-identity-components/commit/5bd9251)), closes [#28](https://github.com/paypal/paypal-identity-components/issues/28)
+* chore: move devDependencies to @krakenjs scope (#25) ([716aeae](https://github.com/paypal/paypal-identity-components/commit/716aeae)), closes [#25](https://github.com/paypal/paypal-identity-components/issues/25)
+* chore: update git repository link (#7) ([8e4c0d5](https://github.com/paypal/paypal-identity-components/commit/8e4c0d5)), closes [#7](https://github.com/paypal/paypal-identity-components/issues/7)
+
+
+
 ## <small>5.0.11 (2022-04-04)</small>
 
 * chore: update packages to krakenjs scope (#23) ([65b7ad4](https://github.paypal.com/paypal/paypal-auth/commit/65b7ad4)), closes [#23](https://github.paypal.com/paypal/paypal-auth/issues/23)
