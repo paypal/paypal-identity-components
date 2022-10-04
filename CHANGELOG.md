@@ -1,3 +1,8 @@
+## <small>5.0.13 (2022-10-04)</small>
+
+
+
+
 ## <small>5.0.12 (2022-10-04)</small>
 
 * Update dependencies (#28) ([5bd9251](https://github.com/paypal/paypal-identity-components/commit/5bd9251)), closes [#28](https://github.com/paypal/paypal-identity-components/issues/28)
