@@ -19,6 +19,15 @@ module.exports = {
     __PATH__: true,
     __COMPONENTS__: true,
     __FUNDING_ELIGIBILITY__: true,
+    document: true,
+    performance: true,
+    assert: true,
+    beforeAll: true,
+    afterAll: true,
+    test: true,
+    jest: true,
+    page: true,
+    browserlist: true,
   },
 
   rules: {
@@ -30,5 +39,11 @@ module.exports = {
     "react/require-default-props": "off",
     "react/forbid-component-props": "off",
     "react/no-unused-prop-types": "off",
+    "compat/compat": "off",
+    "max-lines": "off",
+    "no-restricted-globals": "off",
+    "promise/no-native": "off",
+    "key-spacing": "off",
+    "import/no-commonjs": "off",
   },
 };
