@@ -275,21 +275,8 @@ export function normalizeButtonProps(
     if (SUPPORTED_FUNDING_SOURCES.indexOf(fundingSource) === -1) {
       throw new Error(`Invalid funding source: ${fundingSource}`);
     }
-  }
-  // $FlowFixMe
-  style = normalizeButtonStyle(props, style);
-  return {
-    clientID,
-    fundingSource,
-    style,
-    locale,
-    env,
-    platform,
-    authButtonSessionID,
-    sessionID,
-    nonce,
-    content,
-    customLabel,
-    responseType,
-  };
+    // $FlowFixMe[incompatible-call]
+    style = normalizeButtonStyle(props, style);
+    return { clientID, fundingSource, style, locale, env, platform,
+        authButtonSessionID, sessionID, nonce, content, customLabel, responseType };
 }

@@ -41,7 +41,7 @@ import { PrerenderedButton } from "./prerender";
 
 export type AuthButtonComponent = ZoidComponent<ButtonProps>;
 
-// $FlowFixMe
+// $FlowFixMe[signature-verification-failure]
 export const getAuthButtonComponent = memoize(
   (): ZoidComponent<ButtonProps> => {
     const AuthButton = create({
@@ -301,7 +301,6 @@ export const getAuthButtonComponent = memoize(
     ButtonWrapper.isChild = AuthButton.isChild;
     ButtonWrapper.canRenderTo = AuthButton.canRenderTo;
 
-    // $FlowFixMe
     return ButtonWrapper;
   }
 );

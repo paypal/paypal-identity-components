@@ -34,9 +34,9 @@ async function getButtonScript(): Promise<{|
     throw new TypeError(`Expected componentTemplate to be a function`);
   }
 
-  // $FlowFixMe
+  // $FlowFixMe[invalid-export]
   cache[cacheKey] = exports; // eslint-disable-line require-atomic-updates
-  // $FlowFixMe
+  // $FlowFixMe[invalid-export]
   return exports;
 }
 

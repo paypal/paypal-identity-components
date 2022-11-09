@@ -4,8 +4,8 @@
 import type { WebpackConfig } from "@krakenjs/grumbler-scripts/config/types";
 import { getWebpackConfig } from "@krakenjs/grumbler-scripts/config/webpack.config";
 
-import { testGlobals } from "./test/globals";
-import globals from "./globals";
+import type { WebpackConfig } from "@krakenjs/webpack-config-grumbler/index.flow";
+import { getWebpackConfig } from "@krakenjs/webpack-config-grumbler";
 
 const MODULE_NAME = "paypal";
 
