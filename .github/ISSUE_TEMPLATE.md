@@ -26,5 +26,3 @@ Please provide each individual step required to reproduce the issue
 - [ ] Safari Mobile/Tablet
 - [ ] Web View / Safari ViewController
 - [ ] Other
-
-

@@ -1,16 +1,28 @@
 /* @flow */
 /** @jsx node */
 
-import { node, type ChildType, type ChildrenType } from '@krakenjs/jsx-pragmatic/src';
+import {
+  node,
+  type ChildType,
+  type ChildrenType,
+} from "@krakenjs/jsx-pragmatic/src";
 
-import { CLASS } from '../constants';
+import { CLASS } from "../constants";
 
-export function Text({ optional, className = [] } : {| optional? : boolean, className? : $ReadOnlyArray<string> |}, children : ChildrenType) : ChildType {
-    return (
-        <span class={ [ CLASS.TEXT, ...className  ].join(' ') } optional={ optional }>{ children }</span>
-    );
+export function Text(
+  {
+    optional,
+    className = [],
+  }: {| optional?: boolean, className?: $ReadOnlyArray<string> |},
+  children: ChildrenType
+): ChildType {
+  return (
+    <span class={[CLASS.TEXT, ...className].join(" ")} optional={optional}>
+      {children}
+    </span>
+  );
 }
 
-export function Space() : ChildType {
-    return <span class={ [ CLASS.SPACE ].join(' ') }>{' '}</span>;
+export function Space(): ChildType {
+  return <span class={[CLASS.SPACE].join(" ")}> </span>;
 }

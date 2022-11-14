@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://localhost.paypal.com:9001/sdk.js?client-id=alc_client1"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://localhost.paypal.com:9001/sdk.js?client-id=alc_client1"></script>
 </head>
 
 <body>
-    <div id="paypal-auth-button-container" style="width: 50%"></div>
+  <div id="paypal-auth-button-container" style="width: 50%"></div>
 
-    <script>
-        paypal.AuthButton({
-            scopes: ['email'],
-            responseType: 'code',
-            style: {
-                label: 'connect'
-            }
-        }).render('#paypal-auth-button-container');
-    </script>
+  <script>
+    paypal
+      .AuthButton({
+        scopes: ["email"],
+        responseType: "code",
+        style: {
+          label: "connect",
+        },
+      })
+      .render("#paypal-auth-button-container");
+  </script>
 </body>
