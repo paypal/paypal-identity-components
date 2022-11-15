@@ -1,13 +1,13 @@
 /* @flow */
 
-import { ENV } from '@paypal/sdk-constants/src';
-import { LOGO_CLASS } from '@paypal/sdk-logos/src';
+import { ENV } from "@paypal/sdk-constants/src";
+import { LOGO_CLASS } from "@paypal/sdk-logos/src";
 
-import { CLASS, BUTTON_SHAPE } from '../../../constants';
+import { CLASS, BUTTON_SHAPE } from "../../../constants";
 
 export const buttonStyle = `
 
-    .${ CLASS.CONTAINER } {
+    .${CLASS.CONTAINER} {
         display: block;
         white-space: nowrap;
         margin: 0;
@@ -25,7 +25,7 @@ export const buttonStyle = `
 
      }
 
-    .${ CLASS.BUTTON } {
+    .${CLASS.BUTTON} {
         border: 1px solid transparent;
         border-radius: 3px;
         position: relative;
@@ -38,18 +38,18 @@ export const buttonStyle = `
         overflow: hidden;
     }
 
-    .${ CLASS.BUTTON } * {
+    .${CLASS.BUTTON} * {
         cursor: pointer;
     }
 
-    .${ CLASS.CONTAINER }.${ CLASS.ENV }-${ ENV.TEST } .${ CLASS.TEXT } {
+    .${CLASS.CONTAINER}.${CLASS.ENV}-${ENV.TEST} .${CLASS.TEXT} {
         font-family: Arial !important;
         background: rgba(0, 0, 0, 0.5) !important;
         color: transparent  !important;
         text-shadow: none  !important;
     }
 
-    .${ LOGO_CLASS.LOGO } {
+    .${LOGO_CLASS.LOGO} {
         padding: 0px;
         display: inline-block;
         background: none;
@@ -57,28 +57,28 @@ export const buttonStyle = `
         width: auto;
     }
 
-    .${ CLASS.TEXT }, .${ CLASS.SPACE } {
+    .${CLASS.TEXT}, .${CLASS.SPACE} {
         display: inline-block;
         white-space: pre;
         padding-left:7px;
     }
 
-    .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
+    .${CLASS.BUTTON} > .${CLASS.BUTTON_LABEL} {
         position: relative;
         top: 50%;
         transform: translateY(-50%);
     }
 
-    .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } > * {
+    .${CLASS.BUTTON} > .${CLASS.BUTTON_LABEL} > * {
         vertical-align: middle;
         height: 100%;
         text-align: left;
     }
        
-    .${ CLASS.SHAPE }-${ BUTTON_SHAPE.PILL }  {
+    .${CLASS.SHAPE}-${BUTTON_SHAPE.PILL}  {
         border-radius: 50px;
     }
-    .${ CLASS.CHECKOUTOVERLAY } > .${ CLASS.CHECKOUTMODAL } > .${ CLASS.CHECKOUTLOGO } {
+    .${CLASS.CHECKOUTOVERLAY} > .${CLASS.CHECKOUTMODAL} > .${CLASS.CHECKOUTLOGO} {
         margin-bottom: 0px; !important;
     }
 `;

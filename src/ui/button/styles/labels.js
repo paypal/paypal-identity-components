@@ -23,7 +23,7 @@ export const VISIBLE = `
 
 export const labelStyle = `
     @keyframes show-text {
-        0% { ${ COMPRESSED } }
-        100% { ${ EXPANDED } }
+        0% { ${COMPRESSED} }
+        100% { ${EXPANDED} }
     }
 `;

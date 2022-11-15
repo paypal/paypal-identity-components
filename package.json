@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "babel-node $(npm bin)/webpack-dev-server --config webpack.config.dev.js --port 9001 --host localhost.paypal.com --open-page demo/dev/index.htm --https --hot=false --inline=false",
-    "lint": "eslint --ext .js --ext .jsx src/ test/ *.js",
+    "lint": "npm run format:check && eslint --ext .js --ext .jsx src/ test/ *.js",
     "flow-typed": "rm -rf flow-typed && flow-typed install",
     "flow": "flow",
     "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
@@ -25,7 +25,9 @@
     "demo": "serve ./demo -l 1337",
     "eslint-find-rules": "eslint-find-rules --current .eslintrc.js --unused --plugin",
     "jest-screenshot": "jest test/screenshot --env=node --no-cache",
-    "jest-ssr": "jest test/ssr --env=node --no-cache"
+    "jest-ssr": "jest test/ssr --env=node --no-cache",
+    "format": "prettier --write ./",
+    "format:check": "npx prettier --check ./"
   },
   "files": [
     "src/",
@@ -68,6 +70,7 @@
     "mocketeer": "^0.3.0",
     "pixelmatch": "^4.0.2",
     "pngjs": "^3.3.0",
+    "prettier": "^2.7.1",
     "puppeteer": "^1.14.0",
     "serve": "^10.1.2"
   },

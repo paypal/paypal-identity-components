@@ -1,4 +1,4 @@
 /* @flow */
 
-import './auth';
-import './auth-button';
+import "./auth";
+import "./auth-button";

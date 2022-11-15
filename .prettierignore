@@ -1,0 +1,16 @@
+.npm
+.nvm
+.tmp/
+.vscode/
+config
+coverage
+creds
+DevRunner
+dist
+docs
+flow-typed
+logs
+metrics
+tmp/
+*.json
+changelog/
