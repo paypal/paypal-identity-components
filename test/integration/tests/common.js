@@ -391,9 +391,9 @@ type OnElementResizeOptions = {|
   timeout?: number,
 |};
 
-// $FlowFixMe
 export function onElementResize(
   el: HTMLElement,
+  // $FlowFixMe
   opts?: OnElementResizeOptions = {}
 ): ZalgoPromise<void> {
   const { width: expectedWidth, height: expectedHeight, timeout = 1000 } = opts;
