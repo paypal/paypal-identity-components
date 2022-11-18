@@ -27,7 +27,7 @@ export function PrerenderedButton({
   return (
     <html>
       <body>
-        {/* $FlowFixMe */}
+        {/* $FlowFixMe[incompatible-use] */}
         <AuthButton {...props} />
         <VenmoSpinnerPage nonce={nonce} />
       </body>

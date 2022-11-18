@@ -168,7 +168,7 @@ export function normalizeButtonStyle(
     BUTTON_COLOR.SILVER,
     BUTTON_COLOR.WHITE,
   ];
-  // $FlowFixMe
+  // $FlowFixMe[incompatible-use]
   const { fundingSource = FUNDING.PAYPAL } = props;
   if (fundingSource === FUNDING.PAYPAL) {
     ALLOWED_COLORS = [
@@ -276,7 +276,7 @@ export function normalizeButtonProps(
       throw new Error(`Invalid funding source: ${fundingSource}`);
     }
   }
-  // $FlowFixMe
+  // $FlowFixMe[incompatible-call]
   style = normalizeButtonStyle(props, style);
   return {
     clientID,

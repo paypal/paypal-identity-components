@@ -51,7 +51,6 @@ export function containerTemplate({
     }, 1000);
   });
 
-  // $FlowFixMe
   const { style } = props;
   const { label } = style;
 

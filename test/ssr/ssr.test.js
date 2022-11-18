@@ -1,7 +1,7 @@
 /* @flow */
 /* eslint no-restricted-globals: 0, promise/no-native: 0 */
 
-import { getWebpackConfig } from "@krakenjs/grumbler-scripts/config/webpack.config";
+import { getWebpackConfig } from "@krakenjs/webpack-config-grumbler";
 import { html, ElementNode } from "@krakenjs/jsx-pragmatic";
 
 import { webpackCompileToString } from "../screenshot/lib/compile";
@@ -34,9 +34,9 @@ async function getButtonScript(): Promise<{|
     throw new TypeError(`Expected componentTemplate to be a function`);
   }
 
-  // $FlowFixMe
+  // $FlowFixMe[invalid-export]
   cache[cacheKey] = exports; // eslint-disable-line require-atomic-updates
-  // $FlowFixMe
+  // $FlowFixMe[invalid-export]
   return exports;
 }
 

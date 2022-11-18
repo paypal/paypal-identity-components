@@ -2,7 +2,7 @@
 /* eslint no-restricted-globals: off, no-console: off, no-process-exit: off, no-process-env: off, unicorn/no-process-exit: off */
 
 import fs from "fs-extra";
-import { getWebpackConfig } from "@krakenjs/grumbler-scripts/config/webpack.config";
+import { getWebpackConfig } from "@krakenjs/webpack-config-grumbler";
 
 import { testGlobals } from "../globals";
 import globals from "../../globals";
@@ -66,7 +66,7 @@ for (const config of buttonConfigs) {
     const diffpath = `${IMAGE_DIR}/${filename}-old.png`;
 
     const { x, y, width, height } = await page.evaluate(async (options) => {
-      // $FlowFixMe
+      // $FlowFixMe[incompatible-use]
       document.body.innerHTML = "";
 
       const container = window.document.createElement("div");
