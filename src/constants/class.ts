@@ -1,0 +1,17 @@
+export const CLASS = {
+  CONTAINER: "paypal-auth-button-container",
+  BUTTON: "paypal-auth-button",
+  BUTTON_LABEL: "paypal-auth-button-label-container",
+  LABEL: "paypal-auth-button-label",
+  COLOR: "paypal-auth-button-color",
+  TEXT_COLOR: "paypal-auth-button-text-color",
+  SHAPE: "paypal-auth-button-shape",
+  ENV: "paypal-auth-button-env",
+  TEXT: "paypal-auth-button-text",
+  SPACE: "paypal-auth-button-space",
+  CHECKOUTOVERLAY: "paypal-checkout-overlay",
+  CHECKOUTMODAL: "paypal-checkout-modal",
+  CHECKOUTLOGO: "paypal-checkout-logo",
+  HIDDEN: "hidden",
+  SPINNER_COLOR: "paypal-auth-button-spinner",
+} as const;

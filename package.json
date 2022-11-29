@@ -4,12 +4,10 @@
   "description": "PayPal Identity components, for integrating auth products.",
   "main": "index.js",
   "scripts": {
-    "dev": "babel-node $(npm bin)/webpack-dev-server --config webpack.config.dev.js --port 9001 --host localhost.paypal.com --open demo/dev/index.htm --https --hot=false",
-    "lint": "npm run format:check && eslint --ext .js --ext .jsx src/ test/ *.js",
-    "flow-typed": "rm -rf flow-typed && flow-typed install",
-    "flow": "flow",
+    "dev": "babel-node $(npm bin)/webpack-dev-server --config webpack.config.dev.js --port 9001 --host localhost.paypal.com --open-page demo/dev/index.htm --https --hot=false --inline=false",
+    "lint": "npm run format:check && eslint . --ext .ts,.tsx,.js,.jsx,.mjs",
     "karma": "cross-env NODE_ENV=test babel-node $(npm bin)/karma start",
-    "test": "if [ ! $SKIP_TEST ]; then npm run lint && npm run flow-typed && npm run flow && npm run jest-ssr && npm run karma; fi;",
+    "test": "if [ ! $SKIP_TEST ]; then npm run lint && npm run typecheck && npm run jest-ssr && npm run karma; fi;",
     "webpack": "babel-node $(npm bin)/webpack --progress",
     "build": "npm run test && npm run webpack",
     "release": "./scripts/publish.sh",
@@ -20,14 +18,15 @@
     "version": "./scripts/version.sh",
     "postversion": "./scripts/postversion.sh",
     "clean": "rimraf dist coverage",
-    "reinstall": "rimraf flow-typed && rimraf node_modules && npm install && flow-typed install",
+    "reinstall": "rimraf node_modules && npm install",
     "debug": "cross-env NODE_ENV=debug",
     "demo": "serve ./demo -l 1337",
     "eslint-find-rules": "eslint-find-rules --current .eslintrc.js --unused --plugin",
     "jest-screenshot": "jest test/screenshot --env=node --no-cache",
     "jest-ssr": "jest test/ssr --env=node --no-cache",
     "format": "prettier --write ./",
-    "format:check": "npx prettier --check ./"
+    "format:check": "npx prettier --check ./",
+    "typecheck": "tsc"
   },
   "files": [
     "src/",
@@ -58,12 +57,17 @@
   "license": "Apache-2.0",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "@krakenjs/grumbler-scripts": "^8.0.4",
+    "@krakenjs/grumbler-scripts": "^8.1.1",
     "@krakenjs/sync-browser-mocks": "^3.0.0",
+    "@types/fs-extra": "^4.0.12",
+    "@types/imagemagick": "0.0.31",
+    "@types/jest": "^29.2.3",
+    "@types/pixelmatch": "^5.2.4",
+    "@types/pngjs": "^6.0.1",
+    "@types/puppeteer": "^1.0.4",
+    "@types/webpack": "^5.28.0",
     "conventional-changelog-cli": "^2.0.11",
     "cross-env": "^7.0.3",
-    "flow-bin": "0.155.0",
-    "flow-typed": "^3.8.0",
     "fs-extra": "^4.0.2",
     "imagemagick": "^0.1.3",
     "imgur": "^0.2.1",
@@ -75,7 +79,9 @@
     "pngjs": "^3.3.0",
     "prettier": "^2.7.1",
     "puppeteer": "^1.14.0",
-    "serve": "^10.1.2"
+    "serve": "^10.1.2",
+    "typescript": "^4.8.4",
+    "utility-types": "^3.10.0"
   },
   "dependencies": {
     "@paypal/common-components": "^1.0.33",
@@ -83,11 +89,11 @@
     "@paypal/sdk-client": "^4.0.166",
     "@paypal/sdk-constants": "^1.0.57",
     "@paypal/sdk-logos": "^2.0.0",
-    "@krakenjs/belter": "^2.0.0",
-    "@krakenjs/cross-domain-utils": "^3.0.0",
+    "@krakenjs/belter": "^3.0.0-typescript.1",
+    "@krakenjs/cross-domain-utils": "^4.0.0-typescript.1",
     "@krakenjs/jsx-pragmatic": "^3.0.0",
     "@krakenjs/post-robot": "^11.0.0",
-    "@krakenjs/zalgo-promise": "^2.0.0",
+    "@krakenjs/zalgo-promise": "^3.0.0-typescript.1",
     "@krakenjs/zoid": "^10.0.0"
   }
 }
