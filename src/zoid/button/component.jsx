@@ -290,15 +290,6 @@ export const getAuthButtonComponent = memoize(
           default: () => "",
         },
 
-        redirectToMerchant: {
-          type: "function",
-          value:
-            ({ href }) =>
-            () => {
-              window.location.href = href;
-            },
-        },
-
         merchantDomain: {
           type: "string",
           queryParam: true,
