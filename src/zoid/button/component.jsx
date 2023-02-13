@@ -29,7 +29,7 @@ import { node, dom } from "@krakenjs/jsx-pragmatic/src";
 import { FUNDING } from "@paypal/sdk-constants/src";
 
 import { normalizeButtonStyle, type ButtonProps } from "../../ui/button/props";
-import { getRedirectUrl } from "../auth/config";
+import { getRedirectUrl, getMerchantDomain } from "../auth/config";
 
 import {
   validateScopes,
@@ -288,6 +288,12 @@ export const getAuthButtonComponent = memoize(
           type: "string",
           queryParam: true,
           default: () => "",
+        },
+
+        merchantDomain: {
+          type: "string",
+          queryParam: true,
+          value: () => getMerchantDomain(),
         },
       },
     });
