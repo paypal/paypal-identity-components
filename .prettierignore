@@ -13,4 +13,4 @@ logs
 metrics
 tmp/
 *.json
-changelog/
+CHANGELOG.md
