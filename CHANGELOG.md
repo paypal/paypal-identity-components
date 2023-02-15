@@ -1,3 +1,11 @@
+## <small>5.0.14 (2023-02-15)</small>
+
+* Chore/prettier (#30) ([75e97cf](https://github.com/paypal/paypal-identity-components/commit/75e97cf)), closes [#30](https://github.com/paypal/paypal-identity-components/issues/30)
+* Grumbler scripts 8 (#29) ([b5b9e7c](https://github.com/paypal/paypal-identity-components/commit/b5b9e7c)), closes [#29](https://github.com/paypal/paypal-identity-components/issues/29)
+* merchainDomain and implicit redirect (#31) ([320e280](https://github.com/paypal/paypal-identity-components/commit/320e280)), closes [#31](https://github.com/paypal/paypal-identity-components/issues/31)
+
+
+
 ## <small>5.0.13 (2022-10-04)</small>
 
 ## <small>5.0.12 (2022-10-04)</small>
