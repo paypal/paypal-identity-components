@@ -10,5 +10,5 @@ export function getRedirectUrl(): string {
 }
 
 export function getMerchantDomain(): string {
-  return window.location.href;
+  return window.location.hostname;
 }
