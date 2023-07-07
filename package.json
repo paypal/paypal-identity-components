@@ -1,6 +1,6 @@
 {
   "name": "@paypal/identity-components",
-  "version": "5.0.14",
+  "version": "5.0.15-beta",
   "description": "PayPal Identity components, for integrating auth products.",
   "main": "index.js",
   "scripts": {

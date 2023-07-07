@@ -29,7 +29,9 @@ import { node, dom } from "@krakenjs/jsx-pragmatic/src";
 import { FUNDING } from "@paypal/sdk-constants/src";
 
 import { normalizeButtonStyle, type ButtonProps } from "../../ui/button/props";
-import { getRedirectUrl, getMerchantDomain } from "../auth/config";
+import { getMerchantDomain } from "../auth/config";
+import _postRebot from "@krakenjs/post-robot";
+
 
 import {
   validateScopes,
@@ -115,12 +117,6 @@ export const getAuthButtonComponent = memoize(
           sendToChild: true,
           value: getSDKMeta,
         },
-
-        onApprove: {
-          type: "function",
-          required: false,
-        },
-
         onCancel: {
           type: "function",
           required: false,
@@ -245,7 +241,7 @@ export const getAuthButtonComponent = memoize(
         returnurl: {
           type: "string",
           queryParam: true,
-          value: () => getRedirectUrl(),
+          // value: () => getRedirectUrl(),
         },
         scopes: {
           type: "array",
@@ -300,13 +296,16 @@ export const getAuthButtonComponent = memoize(
 
     const ButtonWrapper = (props) => {
       const instance = AuthButton(props);
+      _postRebot.on("onApproveEvent",({data})=>{
+        window.location.assign(data.redirectUrl)
+      })
       return instance;
     };
 
     ButtonWrapper.driver = AuthButton.driver;
     ButtonWrapper.isChild = AuthButton.isChild;
     ButtonWrapper.canRenderTo = AuthButton.canRenderTo;
-
+    
     return ButtonWrapper;
   }
 );
